@@ -16,12 +16,85 @@
             <b-navbar-item href="#">
               Home
             </b-navbar-item>
+
             <b-navbar-item href="#">
-              Documentation
+              Products
             </b-navbar-item>
+
+            <b-navbar-item>
+              About Us
+            </b-navbar-item>
+
+            <b-navbar-item>
+              Find The Perfect Bean Type
+            </b-navbar-item>
+
           </template>
 
           <template slot="end">
+            <b-navbar-item>
+              <strong>Cart</strong>
+            </b-navbar-item>
+
+
+      <b-navbar-dropdown label="Account">
+            <div class="navbar-menu">
+              <div class="navbar-end">
+                <b-dropdown position="is-bottom-left" aria-role="menu">
+                  <a
+                          class="navbar-item"
+                          slot="trigger"
+                          role="button">
+                    <span>Login</span>
+                    <b-icon icon="menu-down"></b-icon>
+                  </a>
+
+                  <b-dropdown-item
+                          aria-role="menu-item"
+                          :focusable="false"
+                          custom
+                          paddingless>
+                    <form action="">
+                      <div class="modal-card" style="width:300px;">
+                        <section class="modal-card-body">
+                          <b-field label="Email">
+                            <b-input
+                                    type="email"
+                                    placeholder="Your email"
+                                    required>
+                            </b-input>
+                          </b-field>
+
+                          <b-field label="Password">
+                            <b-input
+                                    type="password"
+                                    password-reveal
+                                    placeholder="Your password"
+                                    required>
+                            </b-input>
+                          </b-field>
+
+                          <b-checkbox>Remember me</b-checkbox>
+                        </section>
+                        <footer class="modal-card-foot">
+                          <button class="button is-primary">Login</button>
+                        </footer>
+                      </div>
+                    </form>
+                  </b-dropdown-item>
+
+                </b-dropdown>
+              </div>
+            </div>
+      </b-navbar-dropdown>
+
+
+
+
+
+            <b-navbar-dropdown>
+              <strong> Account </strong>
+              <div>
             <b-navbar-item tag="div">
               <div class="buttons">
                 <a class="button is-primary">
@@ -32,8 +105,14 @@
                 </a>
               </div>
             </b-navbar-item>
+              </div>
+            </b-navbar-dropdown>
+
+
           </template>
+
         </b-navbar>
+
       </section>
     </div>
     <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
