@@ -2,60 +2,78 @@
   <!-- MasterPage -->
   <div id="app">
     <div class="parent">
+      <!--      Body tag -->
       <section>
-        <!-- Navigation Bar -->
-        <b-navbar>
-          <template slot="brand">
-            <b-navbar-item class="itemHeight" href="/">
-              <img src="../src/assets/images/Logo.png" />
-            </b-navbar-item>
-          </template>
-          <template slot="start">
-            <b-navbar-item href="#">
-              Home
-            </b-navbar-item>
+        <section>
+          <!-- Navigation Bar -->
+          <b-navbar>
+            <template slot="brand">
+              <b-navbar-item class="itemHeight" href="/">
+                <img src="../src/assets/images/Logo.png" />
+              </b-navbar-item>
+            </template>
+            <template slot="start">
+              <b-navbar-item href="/">
+                Home
+              </b-navbar-item>
 
-            <b-navbar-item href="#">
-              Products
-            </b-navbar-item>
+              <b-navbar-item href="/product">
+                <!--                <router-link to="Products"></router-link>-->
 
-            <b-navbar-item>
-              About Us
-            </b-navbar-item>
+                Products
+              </b-navbar-item>
 
-            <b-navbar-item>
-              Find The Perfect Bean Type
-            </b-navbar-item>
-          </template>
+              <b-navbar-item>
+                About Us
+              </b-navbar-item>
 
-          <template slot="end">
-            <b-navbar-item>
-              <strong>Cart</strong>
-            </b-navbar-item>
+              <b-navbar-item>
+                Find The Perfect Bean Type
+              </b-navbar-item>
+            </template>
 
-            <b-navbar-item>
-              <LoginNav>Accounts</LoginNav>
-            </b-navbar-item>
-
-          </template>
-        </b-navbar>
+            <template slot="end">
+              <b-navbar-item tag="div">
+                <div class="buttons">
+                  <a class="button is-light" href="/register">
+                    <strong> Sign Up </strong>
+                  </a>
+                  <a class="button is-primary" href="/login">
+                    Log in
+                  </a>
+                </div>
+              </b-navbar-item>
+            </template>
+          </b-navbar>
+        </section>
       </section>
     </div>
-    <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <div></div>
+    <div>
+      <!--     Used to load routes here   -->
+      <router-view></router-view>
+      <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+      <div aria-posinset="center"></div>
+    </div>
     <footer></footer>
   </div>
 </template>
 
-
-
 <script>
-  //Import for Login
-  import  LoginNav from './components/LoginNav'
+//Import for Login
+import LoginNav from "./components/LoginNav";
+import Register from "./views/Register";
+import Home from "./views/Home";
+import Products from "./views/Products";
+import Login from "./views/Login";
+
 export default {
   name: "app",
   components: {
-    LoginNav
+    Register,
+    LoginNav,
+    Home,
+    Products,
+    Login
     // Store Homepage as var Homepage --> Do not save as just Homepage
   }
 };
@@ -77,7 +95,6 @@ export default {
 /*Resize just the img element of Navbar */
 .navbar-item img {
   max-height: 100px;
-
 }
 
 .navbar {
@@ -100,5 +117,4 @@ export default {
 .hero.is-link {
   background-color: #181a1b;
 }
-
 </style>

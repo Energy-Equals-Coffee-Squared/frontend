@@ -33,11 +33,31 @@
           </section>
           <footer class="modal-card-foot">
             <button class="button is-primary">Login</button>
-<!--              TODO Register page   -->
-            <button class="button" href="">Register</button>
           </footer>
         </div>
       </form>
+      <footer>
+<!--      Does not make fields required-->
+<!--        TODO : Padding of Button, Resize And finish up the href -->
+        <button class="button" href="/register">
+          <router-link to="/register"> </router-link> Register</button>
+      </footer>
     </b-dropdown-item>
   </b-dropdown>
 </template>
+
+
+<script>
+  import Register from "../views/Register";
+  export default ({
+    component : {
+      'register':Register
+    },
+    methods:{
+      Navigate_Register: function(RegisterURL)
+      {
+        this.register = RegisterURL ;
+      }
+    }
+  });
+</script>
