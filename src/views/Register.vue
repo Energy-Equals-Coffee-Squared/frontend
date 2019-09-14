@@ -61,6 +61,24 @@
           </div>
           <!-- //CONTACT NUMBER -->
 
+          <!-- PASSWORD -->
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="Password">
+            </div>
+          </div>
+          <!-- //PASSWORD -->
+
+          <!-- REPEAT PASSWORD -->
+          <div class="field">
+            <label class="label">Repeat Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="Repeat Password">
+            </div>
+          </div>
+          <!-- //REPEAT PASSWORD -->
+
           <button class="button is-fullwidth is-info">Register</button>
         </div>
 
