@@ -4,6 +4,8 @@ import Register from "./views/Register";
 import Home from "./views/Home"
 import Products from "./views/Products";
 import Login from "./views/Login";
+import About from "./views/About";
+import CoffeeHelp from "./views/CoffeeHelp";
 
 Vue.use(Router);
 
@@ -31,6 +33,16 @@ export default new Router({
       path: "/login",
       component: Login,
       name:"login"
+    },
+    {
+      path: "/about",
+      component: About,
+      name:"about"
+    },
+    {
+      path : "/coffeehelp",
+      component:CoffeeHelp,
+      name:"coffeehelp"
     }
   ]
 });
