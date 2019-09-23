@@ -23,11 +23,11 @@
                 Products
               </b-navbar-item>
 
-              <b-navbar-item>
+              <b-navbar-item href = "/about">
                 About Us
               </b-navbar-item>
 
-              <b-navbar-item>
+              <b-navbar-item href="/coffeehelp">
                 Find The Perfect Bean Type
               </b-navbar-item>
             </template>
@@ -65,6 +65,8 @@ import Register from "./views/Register";
 import Home from "./views/Home";
 import Products from "./views/Products";
 import Login from "./views/Login";
+import About from "./views/About";
+import CoffeeHelp from "./views/CoffeeHelp";
 
 export default {
   name: "app",
@@ -73,7 +75,9 @@ export default {
     LoginNav,
     Home,
     Products,
-    Login
+    Login,
+    About,
+    CoffeeHelp
     // Store Homepage as var Homepage --> Do not save as just Homepage
   }
 };
