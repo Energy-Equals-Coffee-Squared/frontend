@@ -1,4 +1,31 @@
 <template>
+  <div>
+
+<!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
+    <b-dropdown
+            style= "background-color: #00adda; margin: 10px"
+            v-model="selectedFilters"
+            multiple
+            aria-role="list">
+      <button class="button is-primary" type="button" slot="trigger" >
+        <span>Search Filters<!--({{ selectedFilters.length }})--></span>
+        <b-icon icon="menu-down"></b-icon>
+      </button>
+
+      <b-dropdown-item value="option1" aria-role="listitem">
+        <span>Origin</span>
+      </b-dropdown-item>
+
+      <b-dropdown-item value="option2" aria-role="listitem">
+        <span>Bean Type</span>
+      </b-dropdown-item>
+
+      <b-dropdown-item value="option3" aria-role="listitem">
+        <span>Price</span>
+      </b-dropdown-item>
+    </b-dropdown>
+
+
   <div class="container" style="position: center">
     <div style="margin: 50px">
       <div class="rows">
@@ -68,12 +95,23 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Products"
+  name: "Products",
+  data(){
+    return{
+      selectedFilters: []
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+  .button.is-primary{
+    background-color: #00adda;
+  }
+</style>

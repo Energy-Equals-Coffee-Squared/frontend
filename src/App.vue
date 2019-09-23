@@ -113,6 +113,9 @@ export default {
   border-color: transparent;
   color: white;
 }
+.is-primary{
+  background-color: #00adda;
+}
 
 .box.is-primary {
   background-color: #00adda;

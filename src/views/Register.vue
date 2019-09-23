@@ -48,20 +48,18 @@
           </div>
         </div>
       </section>
-      <div>
-      </div>
+      <div></div>
     </section>
     <section style="display: flex; justify-content: center">
-        <div class="button is-primary" style="width: 65px;height: 48px ">
-          <strong style="text-align: center">Submit</strong>
-        </div>
+      <div class="button is-primary" style="width: 65px;height: 48px ">
+        <strong style="text-align: center">Submit</strong>
+      </div>
     </section>
   </section>
-
 </template>
 
 <style scoped>
-  .is-primary {
-    background-color: #00adda;
-  }
+.is-primary {
+  background-color: #00adda;
+}
 </style>

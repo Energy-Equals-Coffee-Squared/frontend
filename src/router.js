@@ -6,6 +6,7 @@ import Products from "./views/Products";
 import Login from "./views/Login";
 import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
+import EditProducts from "./views/EditProducts";
 
 Vue.use(Router);
 
@@ -43,6 +44,12 @@ export default new Router({
       path : "/coffeehelp",
       component:CoffeeHelp,
       name:"coffeehelp"
+    },
+    {
+      path: "/editproducts",
+      component: EditProducts,
+      name:"editproducts"
+
     }
   ]
 });

@@ -1,9 +1,11 @@
 <template>
+  <div class="container" style="margin-top: 25px">
   <p>
     <strong>
       {{ message }}
     </strong>
   </p>
+  </div>
 </template>
 
 <script>
