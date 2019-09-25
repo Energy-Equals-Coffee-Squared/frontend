@@ -1,6 +1,7 @@
 <template>
     <section>
-  <div class="slideshow-container">
+      <div class="container">
+  <div class="slideshow-container" style="margin: 50px;">
     <!-- Full-width images with number and caption text -->
     <div class="mySlides fade">
       <div class="numbertext">1 / 3</div>
@@ -32,7 +33,7 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
   </div>
-
+      </div>
     </section>
 </template>
 

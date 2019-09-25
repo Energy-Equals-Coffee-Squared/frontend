@@ -87,14 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  } */
+
 /* Resize items of navbar */
 .itemHeight {
   height: 100px;
@@ -122,11 +115,11 @@ export default {
   color: white;
 }
 .is-primary{
-  background-color: #00adda;
+  background-color: #a07855;
 }
 
 .box.is-primary {
-  background-color: #00adda;
+  background-color: #a07855;
 }
 
 .hero.is-link {
