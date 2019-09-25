@@ -41,6 +41,9 @@
                   <a class="button is-primary" href="/login">
                     Log in
                   </a>
+                  <a class="button is-secondary" href="/cart">
+                    Cart
+                  </a>
                 </div>
               </b-navbar-item>
             </template>
@@ -102,14 +105,19 @@ export default {
 }
 
 .navbar {
-  background-color: #bcb8b9;
+  background-color: #d4b996;
   min-height: 100px;
   position: relative;
   z-index: 30;
 }
 
 .button.is-primary {
-  background-color: #00adda;
+  background-color: #a07855;
+  border-color: transparent;
+  color: white;
+}
+.button.is-secondary{
+  background-color: #92623b;
   border-color: transparent;
   color: white;
 }

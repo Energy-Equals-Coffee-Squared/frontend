@@ -6,7 +6,11 @@ import Products from "./views/Products";
 import Login from "./views/Login";
 import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
+<<<<<<< Updated upstream
 import EditProducts from "./views/EditProducts";
+=======
+import Cart from "./views/Cart";
+>>>>>>> Stashed changes
 
 Vue.use(Router);
 
@@ -46,10 +50,16 @@ export default new Router({
       name:"coffeehelp"
     },
     {
+<<<<<<< Updated upstream
       path: "/editproducts",
       component: EditProducts,
       name:"editproducts"
 
+=======
+      path :"/cart",
+      component: Cart,
+      name:"cart"
+>>>>>>> Stashed changes
     }
   ]
 });
