@@ -1,65 +1,98 @@
 <template id="register">
-  <section>
-    <section style="display:flex ;justify-content: center; ">
-      <!--    This sectino tag is to make it a vertical change -->
-      <section>
-        <div class="columns" style="margin: 50px ">
-          <div>
-            <!--      Username Column-->
-            <div class="column">
-              <label>Username</label>
+  <section class="section">
+
+
+    <div class="columns is-centered">
+
+      <div class="column is-3 ">
+
+        <h1 class="title has-text-centered">Register</h1>
+
+        <div class="box">
+          <!-- USERNAME -->
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter username">
             </div>
-            <br />
           </div>
-          <div class="column">
-            <b-input Placeholder="Enter Username" style="width: 100%"
-              >Input Username</b-input
-            >
+          <!-- //USERNAME -->
+
+          <!-- EMAIL -->
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter email">
+            </div>
           </div>
+          <!-- //EMAIL -->
+
+          <!-- NAMES -->
+          <label class="label">Name</label>
+          <div class="field is-horizontal">
+            <div class="field-body">
+
+              <!-- FIRSTNAME -->
+              <div class="field is-grouped">
+                <p class="control is-expanded">
+                  <input class="input" type="text" placeholder="First Name">
+                </p>
+              </div>
+              <!-- //FIRSTNAME -->
+
+              <!-- LASTNAME -->
+              <div class="field">
+                <p class="control is-expanded has-icon has-icon-right">
+                  <input class="input" type="email" placeholder="Last Name">
+                </p>
+              </div>
+              <!-- //LASTNAME -->
+
+            </div>
+          </div>
+          <!-- //NAMES -->
+
+          <!-- CONTACT NUMBER -->
+          <div class="field">
+            <label class="label">Contact Number</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Contact Number">
+            </div>
+          </div>
+          <!-- //CONTACT NUMBER -->
+
+          <!-- PASSWORD -->
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="Password">
+            </div>
+          </div>
+          <!-- //PASSWORD -->
+
+          <!-- REPEAT PASSWORD -->
+          <div class="field">
+            <label class="label">Repeat Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="Repeat Password">
+            </div>
+          </div>
+          <!-- //REPEAT PASSWORD -->
+
+          <button class="button is-fullwidth is-info">Register</button>
         </div>
 
-        <div class="columns" style="margin: 50px ">
-          <div>
-            <!--      Username Column-->
-            <div class="column">
-              <label>Password</label>
-            </div>
-            <br />
-          </div>
-          <div class="column">
-            <b-input Placeholder="Enter Password" style="width: 100%"
-              >Input Username</b-input
-            >
-          </div>
-        </div>
 
-        <div class="columns" style="margin: 50px ">
-          <div>
-            <!--      Username Column-->
-            <div class="column">
-              <label>Confirm Password</label>
-            </div>
-            <br />
-          </div>
-          <div class="column">
-            <b-input Placeholder="Retype Password" style="width: 100%"
-              >Input Username</b-input
-            >
-          </div>
-        </div>
-      </section>
-      <div></div>
-    </section>
-    <section style="display: flex; justify-content: center">
-      <div class="button is-primary" style="width: 65px;height: 48px ">
-        <strong style="text-align: center">Submit</strong>
       </div>
-    </section>
+
+    </div>
+
   </section>
+
 </template>
 
 <style scoped>
-.is-primary {
-  background-color: #00adda;
-}
+  .is-primary {
+    background-color: #00adda;
+  }
 </style>

@@ -28,14 +28,19 @@
               </b-navbar-item>
 
               <b-navbar-item href="/coffeehelp">
-                <h1 style="font-size: 21px"> Find The Perfect Bean Type </h1>
+                <h1 style="font-size: 21px"> Help Finding The Perfect Bean </h1>
               </b-navbar-item>
+
+              <b-navbar-item class="editProd" id="editProd" href="/editproducts">
+                <h1 style="font-size: 21px"> Edit Products </h1>
+              </b-navbar-item>
+
             </template>
 
             <template slot="end">
               <b-navbar-item tag="div">
                 <div class="buttons">
-                  <a class="button is-light" href="/register" style="background-color: #ebddc4 ">
+                  <a class="button is-light" href="/register" style="background-color: #ebddc4; ">
                     <strong> Sign Up </strong>
                   </a>
                   <a class="button is-primary" href="/login">
@@ -47,6 +52,21 @@
                 </div>
               </b-navbar-item>
             </template>
+<!--            <template slot="end">-->
+<!--              <div class="buttons">-->
+<!--                <b-navbar-item tag="div" class="button is-light" href="/register" style="background-color: #ebddc4; height: 100% ">-->
+<!--                  <strong> Sign Up </strong>-->
+<!--                </b-navbar-item>-->
+
+<!--                <b-navbar-item tag="div" class="button is-primary" href="/login">-->
+<!--                  Log in-->
+<!--                </b-navbar-item>-->
+
+<!--                <b-navbar-item tag="div" class="button is-secondary" href="/cart">-->
+<!--                  Cart-->
+<!--                </b-navbar-item>-->
+<!--              </div>-->
+<!--            </template>-->
           </b-navbar>
         </section>
       </section>
@@ -79,6 +99,7 @@ import Products from "./views/Products";
 import Login from "./views/Login";
 import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
+import EditProducts from "./views/EditProducts";
 
 export default {
   name: "app",
@@ -89,7 +110,8 @@ export default {
     Products,
     Login,
     About,
-    CoffeeHelp
+    CoffeeHelp,
+    EditProducts
     // Store Homepage as var Homepage --> Do not save as just Homepage
   }
 };
@@ -142,6 +164,10 @@ a.button.is-primary:hover{
 
 .hero.is-link {
   background-color: #181a1b;
+}
+
+.navbar-item.editProd{
+  visibility: visible;
 }
 
 

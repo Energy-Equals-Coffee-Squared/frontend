@@ -10,6 +10,15 @@ import 'buefy/dist/buefy.css'
 Vue.use(Buefy)
 // Use Router
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faCoffee)
+library.add(faShoppingCart)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 
 

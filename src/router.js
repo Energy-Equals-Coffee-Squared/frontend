@@ -61,5 +61,6 @@ export default new Router({
       name:"cart"
 
     }
+
   ]
 });

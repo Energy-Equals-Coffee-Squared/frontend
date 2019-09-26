@@ -1,14 +1,14 @@
 <template>
 <!--    I cant get it to make two columns-->
-  <div class="row">
-    <div v-for="product of Products" :key="product.id">
-        <div class="columns">
-      <div class="column">
+
+    <div>
+        <div class="columns is-multiline ">
+      <div class="column"  v-for="product of Products" :key="product.id">
         <!--    To display products -->
         <div class="tile is-ancestor">
           <div
-            class="tile is-horizontal is-primary is-1"
-            style="height: 600px; width: 550px"
+            class="tile is-primary is-8"
+            style="height: 650px; width: 650px"
           >
             <div class="tile">
               <div class="tile is-parent">
@@ -37,7 +37,7 @@
                   <div class="has-text-centered">
                     <button
                       align="center"
-                      class="button is-primary"
+                      class="button is-primary is-horizontal"
                       style="margin: 10px"
                     >
                       <strong> Add To Cart ! </strong>
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-  </div>
+
 
   <!--      </div>-->
 </template>
@@ -87,9 +87,11 @@ export default {
 
 <style scoped>
 /*HELP ME*/
-.tile.is-child.notification.is-info:hover {
-  background-color: #86c232;
-}
+.tile.is-primary:hover{
+    background-color: #86c232;
+    }
+
+
 .button.is-primary {
   background-color: #86c232;
 }

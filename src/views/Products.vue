@@ -6,10 +6,11 @@
 <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
 
     <b-dropdown
-            style= "background-color: #00adda; margin: 10px"
+            style= "background-color: #00adda; margin: 10px;"
             v-model="selectedFilters"
             multiple
-            aria-role="list">
+            aria-role="list"
+    class="is-horizontal">
       <button class="button is-primary" type="button" slot="trigger" >
         <span>Search Filters<!--({{ selectedFilters.length }})--></span>
         <b-icon icon="menu-down"></b-icon>
@@ -30,7 +31,7 @@
     </div>
 
 
-  <div class = "container">
+  <div class = "container" align="center" >
 <!--    <div style="margin: 50px; margin-left: 140px">-->
 <!--      <div class="rows" >-->
 <!--        <div class="row">-->
