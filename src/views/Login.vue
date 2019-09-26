@@ -38,10 +38,10 @@ import axios from "axios";
 export default {
   name: "Login",
   mounted() {
-    axios.get("http://localhost:5000/api/values").then(function(response) {
-      // eslint-disable-next-line no-console
-      console.log(response);
-    });
+    axios.get("http://localhost:5000/api/Users").then(function (response) {
+      var users = response;
+      console.log(users);
+    })
   },
   methods: {
     formSubmit(e) {

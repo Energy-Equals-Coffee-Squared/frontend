@@ -1,12 +1,12 @@
 <template>
   <!-- MasterPage -->
-  <div id="app">
+  <div id="app"  style="background-color: #ebddc4 ; height:auto; min-height: 100vh">
     <div class="parent">
       <!--      Body tag -->
       <section>
         <section>
           <!-- Navigation Bar -->
-          <b-navbar>
+          <b-navbar >
             <template slot="brand">
               <b-navbar-item class="itemHeight" href="/">
                 <img src="../src/assets/images/Logo.png" />
@@ -14,28 +14,28 @@
             </template>
             <template slot="start">
               <b-navbar-item href="/">
-                Home
+                <h1 style="font-size: 21px"> Home </h1>
               </b-navbar-item>
 
               <b-navbar-item href="/product">
                 <!--                <router-link to="Products"></router-link>-->
 
-                Products
+                <h1 style="font-size: 21px"> Products </h1>
               </b-navbar-item>
 
               <b-navbar-item href = "/about">
-                About Us
+                <h1 style="font-size: 21px"> About Us </h1>
               </b-navbar-item>
 
               <b-navbar-item href="/coffeehelp">
-                Find The Perfect Bean Type
+                <h1 style="font-size: 21px"> Find The Perfect Bean Type </h1>
               </b-navbar-item>
             </template>
 
             <template slot="end">
               <b-navbar-item tag="div">
                 <div class="buttons">
-                  <a class="button is-light" href="/register">
+                  <a class="button is-light" href="/register" style="background-color: #ebddc4 ">
                     <strong> Sign Up </strong>
                   </a>
                   <a class="button is-primary" href="/login">
@@ -57,7 +57,16 @@
       <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
       <div aria-posinset="center"></div>
     </div>
-    <footer></footer>
+
+
+    <footer>
+
+    </footer>
+
+
+
+
+
   </div>
 </template>
 
@@ -93,29 +102,38 @@ export default {
   height: 100px;
 }
 /*Resize just the img element of Navbar */
-.navbar-item img {
-  max-height: 100px;
-}
-
 .navbar {
-  background-color: #d4b996;
+  background-color: #222629;
   min-height: 100px;
   position: relative;
   z-index: 30;
 }
 
+.navbar-item img {
+  max-height: 100px;
+}
+.navbar-item{
+  color: white;
+  margin-left: 50px;
+
+}
+
+a.button.is-primary:hover{
+  background-color: #86c232;
+}
+
 .button.is-primary {
-  background-color: #a07855;
+  background-color: #CE9021;
   border-color: transparent;
   color: white;
 }
 .button.is-secondary{
-  background-color: #92623b;
+  background-color: #86c232;
   border-color: transparent;
   color: white;
 }
 .is-primary{
-  background-color: #a07855;
+  background-color: #CE9021;
 }
 
 .box.is-primary {
@@ -125,4 +143,13 @@ export default {
 .hero.is-link {
   background-color: #181a1b;
 }
+
+
+
+
+
+
+
+  /*Footer*/
+
 </style>

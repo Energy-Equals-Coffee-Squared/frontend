@@ -13,11 +13,9 @@ const actions = {
     // commit is to perform some action
     getAllProducts ({ commit })
     {
-        Axios.get("http://localhost:5000/api/products").then(function (response) {
-            var products = response.data.prodcuts;
-            for (let i = 0; i < products.length; i++) {
-                commit('setProducts',products)
-            }
+        Axios.get("http://localhost:5000/api/Products").then(function (response) {
+            var Products = response.data;
+            console.log(users);
         })
     }
 }
