@@ -14,9 +14,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import VueCarousel from '@chenfengyuan/vue-carousel';
+
 library.add(faCoffee)
 library.add(faShoppingCart)
 
+
+Vue.use(VueCarousel);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
