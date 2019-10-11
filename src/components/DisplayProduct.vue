@@ -3,7 +3,7 @@
 
     <div>
         <div class="columns is-multiline ">
-      <div class="column"  v-for="product of Products" :key="product.id">
+      <div class="column"  v-for="product of Products" :key="product.Id">
         <!--    To display products -->
         <div class="tile is-ancestor">
           <div
@@ -44,6 +44,21 @@
                     </button>
                     <!--                      </article>-->
                   </div>
+
+                  <div class="has-text-centered">
+                    <button
+                            align="center"
+                            class="button is-primary is-horizontal"
+                            style="margin: 10px"
+                    >
+
+                      <a :href="'product/' + product.Id" ><strong> More Info </strong> </a>
+
+                    </button>
+                    <!--                      </article>-->
+                  </div>
+
+
                 </article>
               </div>
             </div>
@@ -73,7 +88,7 @@ export default {
         .then(response => {
           this.Products = response.data;
           // eslint-disable-next-line no-console
-          console.log(response);
+          console.log(this.Products );
         })
         .catch(error => {
           //fok all
@@ -81,7 +96,10 @@ export default {
     } catch (e) {
       console.error(e);
     }
-  }
+  },
+
+
+
 };
 </script>
 

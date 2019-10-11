@@ -10,6 +10,7 @@ import CoffeeHelp from "./views/CoffeeHelp";
 import EditProducts from "./views/EditProducts";
 
 import Cart from "./views/Cart";
+import SpecProd from "./views/SpecProd";
 
 
 Vue.use(Router);
@@ -59,6 +60,12 @@ export default new Router({
       path :"/cart",
       component: Cart,
       name:"cart"
+
+    },
+    {
+      path :"/product/:Id",
+      component: SpecProd,
+      name: "SpecProd"
 
     }
 
