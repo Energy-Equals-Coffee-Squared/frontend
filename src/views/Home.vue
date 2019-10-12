@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="margin: 500px">
-    <carousel :data="data"> </carousel>
+<!--    <carousel :data="data"> </carousel>-->
   </div>
 </template>
 

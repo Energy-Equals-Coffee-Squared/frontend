@@ -1,12 +1,15 @@
 <template>
   <!-- MasterPage -->
-  <div id="app"  style="background-color: #ebddc4 ; height:auto; min-height: 100vh">
+  <div
+    id="app"
+    style="background-color: #ebddc4 ; height:auto; min-height: 100vh"
+  >
     <div class="parent">
       <!--      Body tag -->
       <section>
         <section>
           <!-- Navigation Bar -->
-          <b-navbar >
+          <b-navbar>
             <template slot="brand">
               <b-navbar-item class="itemHeight" href="/">
                 <img src="../src/assets/images/Logo.png" />
@@ -14,59 +17,59 @@
             </template>
             <template slot="start">
               <b-navbar-item href="/">
-                <h1 style="font-size: 21px"> Home </h1>
+                <h1 style="font-size: 21px">Home</h1>
               </b-navbar-item>
 
               <b-navbar-item href="/product">
                 <!--                <router-link to="Products"></router-link>-->
 
-                <h1 style="font-size: 21px"> Products </h1>
+                <h1 style="font-size: 21px">Products</h1>
               </b-navbar-item>
 
-              <b-navbar-item href = "/about">
-                <h1 style="font-size: 21px"> About Us </h1>
+              <b-navbar-item href="/about">
+                <h1 style="font-size: 21px">About Us</h1>
               </b-navbar-item>
 
               <b-navbar-item href="/coffeehelp">
-                <h1 style="font-size: 21px"> Help Finding The Perfect Bean </h1>
+                <h1 style="font-size: 21px">Help Finding The Perfect Bean</h1>
               </b-navbar-item>
 
-              <b-navbar-item class="editProd" id="editProd" href="/editproducts">
-                <h1 style="font-size: 21px"> Edit Products </h1>
+              <b-navbar-item
+                class="editProd"
+                id="editProd"
+                href="/editproducts"
+              >
+                <h1 style="font-size: 21px">Edit Products</h1>
               </b-navbar-item>
-
             </template>
 
             <template slot="end">
               <b-navbar-item tag="div">
                 <div class="buttons">
-                  <a class="button is-light" href="/register" style="background-color: #ebddc4; ">
+                  <a
+                    v-if="userType === 'GUEST'"
+                    class="button is-light"
+                    href="/register"
+                    style="background-color: #ebddc4; "
+                  >
                     <strong> Sign Up </strong>
                   </a>
-                  <a class="button is-primary" href="/login">
+                  <a
+                    v-if="userType === 'GUEST'"
+                    class="button is-primary"
+                    href="/login"
+                  >
                     Log in
                   </a>
+                  <button v-if="userType !== 'GUEST'" @click="logout()" class="button is-primary">
+                    Log out
+                  </button>
                   <a class="button is-secondary" href="/cart">
                     Cart
                   </a>
                 </div>
               </b-navbar-item>
             </template>
-<!--            <template slot="end">-->
-<!--              <div class="buttons">-->
-<!--                <b-navbar-item tag="div" class="button is-light" href="/register" style="background-color: #ebddc4; height: 100% ">-->
-<!--                  <strong> Sign Up </strong>-->
-<!--                </b-navbar-item>-->
-
-<!--                <b-navbar-item tag="div" class="button is-primary" href="/login">-->
-<!--                  Log in-->
-<!--                </b-navbar-item>-->
-
-<!--                <b-navbar-item tag="div" class="button is-secondary" href="/cart">-->
-<!--                  Cart-->
-<!--                </b-navbar-item>-->
-<!--              </div>-->
-<!--            </template>-->
           </b-navbar>
         </section>
       </section>
@@ -78,15 +81,7 @@
       <div aria-posinset="center"></div>
     </div>
 
-
-    <footer>
-
-    </footer>
-
-
-
-
-
+    <footer></footer>
   </div>
 </template>
 
@@ -101,6 +96,8 @@ import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
 import EditProducts from "./views/EditProducts";
 
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+
 export default {
   name: "app",
   components: {
@@ -113,12 +110,31 @@ export default {
     CoffeeHelp,
     EditProducts
     // Store Homepage as var Homepage --> Do not save as just Homepage
+  },
+  data: function() {
+    return {
+      userType: "GUEST"
+    };
+  },
+  methods: {
+    ...mapActions("error", ["deleteError"]),
+    ...mapActions("user", ["logoutUser"]),
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    logout() {
+      this.$store.dispatch("user/logoutUser");
+      location.reload();
+    }
+  },
+  created() {
+    //remove errors on page reload
+    this.$store.commit("error/deleteError");
+    this.userType = this.$store.getters["user/getUserType"];
+    console.log(this.userType);
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 /* Resize items of navbar */
 .itemHeight {
   height: 100px;
@@ -134,28 +150,27 @@ export default {
 .navbar-item img {
   max-height: 100px;
 }
-.navbar-item{
+.navbar-item {
   color: white;
   margin-left: 50px;
-
 }
 
-a.button.is-primary:hover{
+a.button.is-primary:hover {
   background-color: #86c232;
 }
 
 .button.is-primary {
-  background-color: #CE9021;
+  background-color: #ce9021;
   border-color: transparent;
   color: white;
 }
-.button.is-secondary{
+.button.is-secondary {
   background-color: #86c232;
   border-color: transparent;
   color: white;
 }
-.is-primary{
-  background-color: #CE9021;
+.is-primary {
+  background-color: #ce9021;
 }
 
 .box.is-primary {
@@ -166,16 +181,9 @@ a.button.is-primary:hover{
   background-color: #181a1b;
 }
 
-.navbar-item.editProd{
+.navbar-item.editProd {
   visibility: visible;
 }
 
-
-
-
-
-
-
-  /*Footer*/
-
+/*Footer*/
 </style>
