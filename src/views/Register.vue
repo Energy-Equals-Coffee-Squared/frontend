@@ -5,6 +5,11 @@
         <h1 class="title has-text-centered">Register</h1>
 
         <div class="box">
+          <div v-if="errorShow" class="message is-danger">
+            <div class="message-body">
+              {{ errorText }}
+            </div>
+          </div>
           <form @submit="formSubmit">
             <!-- USERNAME -->
             <div class="field">

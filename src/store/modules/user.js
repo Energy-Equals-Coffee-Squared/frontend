@@ -12,6 +12,7 @@ export default {
     isAdmin: false,
     userDetails: {
       Id: -1,
+      username: "",
       contact_number: "",
       email: "",
       first_name: "",
@@ -41,6 +42,7 @@ export default {
       console.log(userPayload);
       state.userDetails.Id = userPayload.Id;
       state.userDetails.contact_number = userPayload.contact_number;
+      state.userDetails.username = userPayload.username;
       state.userDetails.email = userPayload.email;
       state.userDetails.first_name = userPayload.first_name;
       state.userDetails.last_name = userPayload.last_name;

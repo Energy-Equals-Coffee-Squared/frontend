@@ -1,7 +1,7 @@
 <template>
   <div class="container" align="center">
-    <div class="tile is-ancestor">
-      <div class="tile is-primary is-8" style="height: 650px; width: 650px">
+    <div class="columns is-centered">
+      <div class="column is-8">
         <div class="tile">
           <div class="tile is-parent">
             <article
@@ -9,9 +9,9 @@
               style="background-color: #222629;"
             >
               <p class="title">
-                Name: <strong>{{ Products[Id].name }}</strong>
+                <strong>{{ product.name }}</strong>
               </p>
-              <p class="subtitle">Origin: {{ Products[Id].name }}</p>
+              <p class="subtitle"></p>
 
               <figure class="image is-128x128" style="margin: 55px">
                 <img
@@ -21,16 +21,74 @@
                 />
               </figure>
 
-              <p class="title" style="margin: 20px">
-                <strong>Price</strong>
-              </p>
-              <p class="subtitle">Description: {{ Products[Id].name }}</p>
-              <!--                            TODO Center Button-->
+              <p class="subtitle">{{ product.desc }}</p>
+              <h1 class="subtitle">More Details</h1>
+              <ul class="">
+                <li>Region: {{ product.region }}</li>
+                <li>Roast: {{ product.roast }}</li>
+                <li>Bean Type: {{ product.bean_type }}</li>
+                <li>Max Altitude: {{ product.altitude_max }}km</li>
+                <li>Min Altitude: {{ product.altitude_min }}km</li>
+              </ul>
+              <br />
               <div class="has-text-centered">
+                <div class="block">
+                  <p class="subtitle">
+                    Pick an option:
+                  </p>
+                  <div v-for="(opt, index) in product.productOptions">
+                    <b-radio
+                      v-model="optIndex"
+                      name="options"
+                      :native-value="index"
+                      @input="changeDispPrice"
+                    >
+                      {{ opt.weight }}g
+                    </b-radio>
+                  </div>
+                </div>
+                <div class="">
+                  <p class="is-size-4">Quantity</p>
+
+                  <div class="field has-addons has-addons-centered">
+                    <p class="control">
+                      <button
+                        class="button is-primary"
+                        @click="decreaseQuantity"
+                      >
+                        -
+                      </button>
+                    </p>
+                    <p class="control">
+                      <input
+                        class="input"
+                        disabled
+                        :value="quantity"
+                        placeholder="Enter the quantity"
+                        required
+                        type="number"
+                      />
+                    </p>
+                    <p class="control">
+                      <button
+                        class="button is-primary"
+                        @click="increaseQuantity"
+                      >
+                        +
+                      </button>
+                    </p>
+                  </div>
+                </div>
+                <br />
+                <p class="title">
+                  <b>Price:</b>
+                  R{{ (price * quantity) / 100 }}
+                </p>
                 <button
                   align="center"
-                  class="button is-primary is-horizontal"
+                  class="button is-primary is-large"
                   style="margin: 10px"
+                  @click="addToCart"
                 >
                   <strong> Add To Cart ! </strong>
                 </button>
@@ -45,34 +103,79 @@
 </template>
 
 <script>
-import axios from "axios";
-import DisplayProduct from "../components/DisplayProduct";
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+
 export default {
   name: "SpecProd",
-  components: { DisplayProduct },
   data() {
-    let Id;
     return {
-      Id,
-      Products: []
+      urlID: -1,
+      product: [],
+      optIndex: 0,
+      price: 0,
+      quantity: 1
     };
   },
-  created() {
-    {
-      this.Id = this.$route.params.Id - 1;
-      console.log("this is the passed ID :" + this.Id);
-
-      // Create and populate array
-      try {
-        axios.get("http://localhost:5000/api/Products/" + Id).then(response => {
-          this.Products = response.data;
-          // eslint-disable-next-line no-console
-          console.log(this.Products);
-        });
-      } catch (e) {
-        console.log(e);
+  computed: {
+    ...mapState("error", ["errorText", "errorShow"]),
+    ...mapState("product", [
+      "Id",
+      "name",
+      "desc",
+      "max_price",
+      "min_price",
+      "region",
+      "roast",
+      "altitude_max",
+      "altitude_min",
+      "bean_type",
+      "image_url",
+      "productOptions"
+    ])
+  },
+  methods: {
+    ...mapMutations("error", ["deleteError"]),
+    ...mapActions("product", ["getProduct"]),
+    ...mapActions("cart", ["addToCart"]),
+    changeDispPrice() {
+      this.price = this.productOptions[this.optIndex].price;
+      // eslint-disable-next-line no-console
+      console.log(this.price);
+    },
+    increaseQuantity() {
+      this.quantity++;
+    },
+    decreaseQuantity() {
+      if (this.quantity > 1) {
+        this.quantity--;
       }
+    },
+    addToCart() {
+      //prodID, optID, name, weight, price, quantity
+      let prodID = this.product.Id;
+      let optID = this.product.productOptions[this.optIndex].Id;
+      let name = this.product.name;
+      let weight = this.product.productOptions[this.optIndex].weight;
+      let price = this.product.productOptions[this.optIndex].price;
+      let qty = this.quantity;
+
+      let promise = this.$store.dispatch("cart/addToCart", [prodID, optID, name, weight, price, qty]);
+      if(promise){
+        this.$router.push("../cart");
+      }
+
     }
+  },
+  beforeCreate() {
+    this.urlID = this.$route.params.Id;
+    // eslint-disable-next-line no-console
+    console.log("this is the passed ID :" + this.urlID);
+    // Create and populate array
+    let vm = this;
+    this.$store.dispatch("product/getProduct", this.urlID).then(function() {
+      vm.product = vm.$store.getters["product/getProduct"];
+      vm.price = vm.product.productOptions[vm.optIndex].price;
+    });
   }
 };
 </script>

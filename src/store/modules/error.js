@@ -11,7 +11,6 @@ export default {
   getters: {},
 
   mutations: {
-    //added by Minimac
     addErrorMessage: (state, message) => {
       state.errorText = message;
     },

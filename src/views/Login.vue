@@ -142,8 +142,6 @@ export default {
           console.log(tempUser);
           if (tempUser !== "GUEST") {
             vm.$router.go(-1);
-            console.log("redirect to home");
-            // window.location.href = "/home";
           }
         });
       }

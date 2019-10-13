@@ -1,73 +1,43 @@
 <template>
-<!--    I cant get it to make two columns-->
+  <!--    I cant get it to make two columns-->
 
-    <div>
-        <div class="columns is-multiline ">
-      <div class="column"  v-for="product of Products" :key="product.Id">
+  <div>
+    <div class="columns is-multiline is-centered">
+      <div class="column is-5" v-for="product of Products" :key="product.Id">
         <!--    To display products -->
-        <div class="tile is-ancestor">
-          <div
-            class="tile is-primary is-8"
-            style="height: 650px; width: 650px"
-          >
-            <div class="tile">
-              <div class="tile is-parent">
-                <article
-                  class="tile is-child notification is-info "
-                  style="background-color: #222629;"
-                >
-                  <p class="title">
-                    Name: <strong>{{ product.name }}</strong>
-                  </p>
-                  <p class="subtitle">Origin: {{ product.region }}</p>
+        <article
+          class="tile is-child notification is-info "
+          style="background-color: #222629;"
+        >
+          <p class="title">
+            <strong>{{ product.name }}</strong>
+          </p>
+          <p class="subtitle">Origin: {{ product.region }}</p>
 
-                  <figure class="image is-128x128" style="margin: 55px">
-                    <img
-                      src="../assets/images/coffee1.png"
-                      width="75"
-                      height="75"
-                    />
-                  </figure>
+          <figure class="image is-128x128" style="margin: 55px">
+            <img src="../assets/images/coffee1.png" width="75" height="75" />
+          </figure>
 
-                  <p class="title" style="margin: 20px">
-                    <strong>Price</strong>
-                  </p>
-                  <p class="subtitle">Description: {{ product.desc }}</p>
-                  <!--                            TODO Center Button-->
-                  <div class="has-text-centered">
-                    <button
-                      align="center"
-                      class="button is-primary is-horizontal"
-                      style="margin: 10px"
-                    >
-                      <strong> Add To Cart ! </strong>
-                    </button>
-                    <!--                      </article>-->
-                  </div>
-
-                  <div class="has-text-centered">
-                    <button
-                            align="center"
-                            class="button is-primary is-horizontal"
-                            style="margin: 10px"
-                    >
-
-                      <a :href="'product/' + product.Id" ><strong> More Info </strong> </a>
-
-                    </button>
-                    <!--                      </article>-->
-                  </div>
-
-
-                </article>
-              </div>
-            </div>
+          <p class="title" style="margin: 20px">
+            <strong
+              >Price R{{ product.min_price / 100 }} - R{{
+                product.max_price / 100
+              }}
+            </strong>
+          </p>
+<!--          <p class="subtitle">Description: {{ product.desc }}</p>-->
+          <div class="has-text-centered">
+            <a
+              class="button is-large is-primary is-fullwidth"
+              :href="'product/' + product.Id"
+              ><b> More Info </b>
+            </a>
+            <!--                      </article>-->
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </div>
-
 
   <!--      </div>-->
 </template>
@@ -88,7 +58,7 @@ export default {
         .then(response => {
           this.Products = response.data;
           // eslint-disable-next-line no-console
-          console.log(this.Products );
+          console.log(this.Products);
         })
         .catch(error => {
           //fok all
@@ -96,19 +66,15 @@ export default {
     } catch (e) {
       console.error(e);
     }
-  },
-
-
-
+  }
 };
 </script>
 
 <style scoped>
 /*HELP ME*/
-.tile.is-primary:hover{
-    background-color: #86c232;
-    }
-
+.tile.is-primary:hover {
+  background-color: #86c232;
+}
 
 .button.is-primary {
   background-color: #86c232;

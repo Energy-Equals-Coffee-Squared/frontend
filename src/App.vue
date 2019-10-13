@@ -4,7 +4,8 @@
     id="app"
     style="background-color: #ebddc4 ; height:auto; min-height: 100vh"
   >
-    <div class="parent">
+    <b-loading style="background-color: #ce9021" :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
+    <div class="parent" v-if="!isLoading">
       <!--      Body tag -->
       <section>
         <section>
@@ -12,7 +13,7 @@
           <b-navbar>
             <template slot="brand">
               <b-navbar-item class="itemHeight" href="/">
-                <img src="../src/assets/images/Logo.png" />
+                <img src="../src/assets/images/Logo.png" rel="preload" alt=""/>
               </b-navbar-item>
             </template>
             <template slot="start">
@@ -46,6 +47,14 @@
             <template slot="end">
               <b-navbar-item tag="div">
                 <div class="buttons">
+                  <a class="button is-secondary" href="/cart">
+                    <img
+                      width="25"
+                      src="../src/assets/images/shopping-cart.svg"
+                      rel="preload"
+                      alt="Cart"
+                    />
+                  </a>
                   <a
                     v-if="userType === 'GUEST'"
                     class="button is-light"
@@ -61,12 +70,7 @@
                   >
                     Log in
                   </a>
-                  <button v-if="userType !== 'GUEST'" @click="logout()" class="button is-primary">
-                    Log out
-                  </button>
-                  <a class="button is-secondary" href="/cart">
-                    Cart
-                  </a>
+                  <account-nav v-if="userType !== 'GUEST'"></account-nav>
                 </div>
               </b-navbar-item>
             </template>
@@ -86,6 +90,7 @@
 </template>
 
 <script>
+
 //Import for Login
 import LoginNav from "./components/LoginNav";
 import Register from "./views/Register";
@@ -95,6 +100,7 @@ import Login from "./views/Login";
 import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
 import EditProducts from "./views/EditProducts";
+import AccountNav from "./components/AccountNav";
 
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 
@@ -108,28 +114,27 @@ export default {
     Login,
     About,
     CoffeeHelp,
-    EditProducts
+    EditProducts,
+    AccountNav
     // Store Homepage as var Homepage --> Do not save as just Homepage
   },
   data: function() {
     return {
-      userType: "GUEST"
+      userType: "GUEST",
+      isLoading: true
     };
   },
   methods: {
     ...mapActions("error", ["deleteError"]),
-    ...mapActions("user", ["logoutUser"]),
-    ...mapGetters("user", ["getUserDetails", "getUserType"]),
-    logout() {
-      this.$store.dispatch("user/logoutUser");
-      location.reload();
-    }
+    ...mapGetters("user", ["getUserDetails", "getUserType"])
   },
   created() {
     //remove errors on page reload
     this.$store.commit("error/deleteError");
     this.userType = this.$store.getters["user/getUserType"];
-    console.log(this.userType);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
   }
 };
 </script>

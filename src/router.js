@@ -66,7 +66,6 @@ export default new Router({
       path :"/product/:Id",
       component: SpecProd,
       name: "SpecProd"
-
     }
 
   ]
