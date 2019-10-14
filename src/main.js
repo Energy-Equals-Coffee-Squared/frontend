@@ -10,6 +10,11 @@ import "buefy/dist/buefy.css";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 Vue.component("vue-fontawesome", FontAwesomeIcon);
 
+
+//Use powerBi
+import * as pbi from 'powerbi-client';
+Vue.use(pbi) ;
+
 Vue.use(Buefy, {
   defaultIconComponent: "vue-fontawesome",
   defaultIconPack: "fas"

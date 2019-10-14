@@ -218,7 +218,9 @@
                     </b-field>
 
 
-                        <button class="button is-fullwidth is-info">Register</button>
+                        <button class="button is-3 is-info" style="margin: 20px ; margin-right: 50px">Edit Product</button>
+                        <button class="button is-3 is-info " style="margin: 20px ; margin-right: 50px">Add Product</button>
+                        <button class="button is-3 is-info" style="margin: 20px ; margin-right: 50px" >Delete Product</button>
                 </div>
             </div>
 

@@ -11,6 +11,7 @@ import edtProd from "./views/EditProducts";
 
 import Cart from "./views/Cart";
 import SpecProd from "./views/SpecProd";
+import WebStats from "./views/WebStats"
 
 
 Vue.use(Router);
@@ -66,7 +67,12 @@ export default new Router({
       path :"/product/:Id",
       component: SpecProd,
       name: "SpecProd"
-    }
+    },
+      {
+       path: "/WebStats",
+       component: WebStats,
+       name: "WebStats"
+      }
 
   ]
 });
