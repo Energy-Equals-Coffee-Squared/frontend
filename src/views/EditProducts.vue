@@ -22,7 +22,9 @@
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Enter Product Name">
+                            <input class="input" type="text" :placeholder= products.name
+                                   v-model="ProdName"
+                            >
                         </div>
                     </div>
                     <!-- //EMAIL -->
@@ -30,7 +32,8 @@
                     <div class="field">
                         <label class="label">Description</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Enter Product Description">
+                            <input class="input" type="text" :placeholder= products.desc
+                            v-model="ProdDesc">
                         </div>
                     </div>
 
@@ -44,7 +47,8 @@
                             <!-- FIRSTNAME -->
                             <div class="field is-grouped">
                                 <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="Max Price">
+                                    <input class="input" type="text" :placeholder= products.max_price
+                                    v-model="ProdMaxP">
                                 </p>
                             </div>
                             <!-- //FIRSTNAME -->
@@ -52,7 +56,8 @@
                             <!-- LASTNAME -->
                             <div class="field">
                                 <p class="control is-expanded has-icon has-icon-right">
-                                    <input class="input" type="email" placeholder="Min Price">
+                                    <input class="input" type="email" :placeholder= products.min_price
+                                    v-model="ProdMinP">
                                 </p>
                             </div>
                             <!-- //LASTNAME -->
@@ -66,7 +71,8 @@
                     <div class="field">
                         <label class="label">Region</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Product Region">
+                            <input class="input" type="text" :placeholder= products.region
+                            v-model="ProdRegion">
                         </div>
                     </div>
 
@@ -78,7 +84,8 @@
                             <!-- FIRSTNAME -->
                             <div class="field is-grouped">
                                 <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="Max Altitude">
+                                    <input class="input" type="text":placeholder= products.altitude_max
+                                    v-model="ProdMaxAlt">
                                 </p>
                             </div>
                             <!-- //FIRSTNAME -->
@@ -86,7 +93,8 @@
                             <!-- LASTNAME -->
                             <div class="field">
                                 <p class="control is-expanded has-icon has-icon-right">
-                                    <input class="input" type="email" placeholder="Min Altitude">
+                                    <input class="input" type="email" :placeholder= products.altitude_min
+                                    v-model="ProdMinAlt">
                                 </p>
                             </div>
                             <!-- //LASTNAME -->
@@ -98,7 +106,8 @@
                     <div class="field">
                         <label class="label">Roast</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder=" Product Roast">
+                            <input class="input" type="text":placeholder= products.roast
+                            v-model="ProdRoast">
                         </div>
                     </div>
 
@@ -106,14 +115,16 @@
                 <div class="field">
                     <label class="label">Bean Type</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Product Bean Type">
+                        <input class="input" type="text" :placeholder= products.bean_type
+                        v-model="ProdBeanType">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Image URL</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Enter Image URL">
+                        <input class="input" type="text" :placeholder= products.image_url
+                        v-model="ProdImgUrl">
                     </div>
                 </div>
 
@@ -121,49 +132,93 @@
                 <div class="field">
                     <label class="label">Date Created</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Product Date Created">
+                        <input class="input" type="text" :placeholder= products.created_at
+                        v-model="ProdCreated">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Date Updated</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Product Date Updated">
+                        <input class="input" type="text" :placeholder= products.updated_at
+                        v-model="ProdUpdated">
                     </div>
                 </div>
 
 
-                    <div class="field">
-                        <label class="label">Product Options</label>
-                        <div class="control">
-                            <b-dropdown v-model="isPublic" aria-role="list">
-                                <button class="button is-primary" type="button" slot="trigger">
-                                    <template v-if="isPublic">
-                                        <b-icon icon="earth"></b-icon>
-                                        <span>Product Options</span>
-                                    </template>
-                                    <template v-else>
-                                        <b-icon icon="account-multiple"></b-icon>
-                                        <span>Friends</span>
-                                    </template>
-                                    <b-icon icon="menu-down"></b-icon>
-                                </button>
+                    <b-field grouped>
+                        <b-field label="Product Options">
+                            <b-select v-model="chosenProd" placeholder="Product Option ">
+                                <option  v-for="prod in products.productOptions" :key="prod.Id">{{prod.Id}}</option>
+<!--                                After Choosing an option , populate the rest -->
+                            </b-select>
+                        </b-field>
 
-                                <b-dropdown-item :value="true" aria-role="listitem">
-                                    <div class="media">
-                                        <b-icon class="media-left" icon="earth"></b-icon>
-                                        <div class="media-content" v-for="prod in ProdOptions" :key="prod.Id">
-                                            <h3>Product Options</h3>
-                                            <small>Select Appropriate option</small>
-                                        </div>
-                                    </div>
-                                </b-dropdown-item>
-                            </b-dropdown>
+                    <div class="box">
+                        <h1>Edit Product Options</h1>
+
+                        <div class="field">
+                            <label class="label">Price</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder= "'Current :' + products.productOptions[this.chosenProd].price"
+                                v-model="ProdOpt">
+
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Weight</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].weight"
+                                v-model="OptWeight">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Quantity</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].quantity"
+                                 v-model="OptQuantity">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                        <label class="label">Created-At</label>
+                        <div class="control">
+                            <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].created_at"
+                            v-model="OptCreated">
                         </div>
                     </div>
 
+                        <div class="field">
+                            <label class="label">Updated-At</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].updated_at"
+                                       v-model="OptUpdated">
+                            </div>
+                        </div>
 
-                    <button class="button is-fullwidth is-info">Register</button>
+                        <div class="field">
+                            <label class="label">Available</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].isAvailable"
+                                       v-model="OptAvailable">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Deleted</label>
+                            <div class="control">
+                                <input class="input" type="text" :placeholder="'Current :' + products.productOptions[this.chosenProd].isDeleted"
+                                       v-model="OptDeleted">
+                            </div>
+                        </div>
+
+                    </div>
+                    </b-field>
+
+
+                        <button class="button is-fullwidth is-info">Register</button>
                 </div>
             </div>
 
@@ -173,62 +228,64 @@
 
 <script>
     import axios from "axios";
-        export default {
-            name: "EditProducts",
-            data() {
-                return {
-                    prodArr: [], //For populating item options from front page
-                    isPublic: true,
-                    ProdName: "",
-                    ProdDesc: "",
-                    ProdMaxP: "",
-                    ProdMinP: "",
-                    ProdMaxAlt: "",
-                    ProdMinAlt: "",
-                    ProdRegion: "",
-                    ProdRoast: "",
-                    ProdBeanType: "",
-                    ProdImgUrl: "",
-                    ProdCreated: "",
-                    ProdUpdated: "",
-                    ProdOptions: []
-                        // "ID",
-                        // "Price",
-                        // "Weight",
-                        // "Quantity",
-                        // "created_at",
-                        // "updated_at",
-                        // "ProductID",
-                        // "isAvailable",
-                        // "isDeleted"
-                    // ],
-                }
-            },
-            beforeCreate() {
-                this.urlID = this.$route.params.Id ;
-                this.ProdID = this.urlID;
-                // eslint-disable-next-line no-console
-                console.log("this is the passed ID :" + this.urlID);
 
-            },
+    export default {
+        name: "EditProducts",
+        data() {
+            return {
+                products: [], //For populating item options from front page
+                ProdOpt :'',
+                chosenProd : 1 , //selecting which product option
+                isPublic: true,
+                ProdName: "",
+                ProdDesc: "",
+                ProdMaxP: "",
+                ProdMinP: "",
+                ProdMaxAlt: "",
+                ProdMinAlt: "",
+                ProdRegion: "",
+                ProdRoast: "",
+                ProdBeanType: "",
+                ProdImgUrl: "",
+                ProdCreated: "",
+                ProdUpdated: "",
+                OptIndex : 0 ,
+                OptPrice:"",
+                OptWeight:"",
+                OptQuantity:"",
+                OptCreated:"",
+                OptUpdated:"",
+                OptAvailable:"",
+                OptDeleted:"",
+            };
+        },
+        beforeCreate() {
+            this.ProdID = this.$route.params.Id;
+            // eslint-disable-next-line no-console
+            console.log("this is the passed ID :" + this.ProdID);
 
-            async created() {
-                try {
-                    axios
-                        .get("http://localhost:5000/api/Products/" + this.ProdID)
-                        .then(response => {
-                            this.ProdOptions = response.data;
-                            // eslint-disable-next-line no-console
-                            console.log(this.Products);
-                        })
-                        .catch(error => {
-                            //fok all
-                        });
-                } catch (e) {
-                    console.error(e);
-                }
+        },
+
+        created: function () {
+            try {
+                axios
+                    .get("http://localhost:5000/api/Products/" + this.ProdID)
+                    .then(response => {
+                        this.products = response.data;
+                        // eslint-disable-next-line no-console
+                        console.log(this.products);
+                        console.log(this.products.productOptions);
+                    })
+                    .catch(error => {
+                    });
+            } catch (e) {
+                console.error(e);
             }
-        }
+
+        },
+
+    }
+
 </script>
 
 
