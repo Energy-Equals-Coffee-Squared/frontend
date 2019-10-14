@@ -158,7 +158,7 @@
             </div>
             <!-- //REPEAT PASSWORD -->
 
-            <button class="button is-fullwidth is-info">Register</button>
+            <button class="button is-fullwidth is-primary">Register</button>
           </form>
         </div>
       </div>

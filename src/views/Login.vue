@@ -58,7 +58,7 @@
             </div>
             <!-- //PASSWORD -->
 
-            <button class="button is-fullwidth is-info">Login</button>
+            <button class="button is-fullwidth is-primary">Login</button>
           </form>
         </div>
       </div>

@@ -7,18 +7,18 @@
       role="button"
     >
       <span>Account</span>
-      <b-icon icon="menu-down"></b-icon>
+      <!--      <b-icon icon="menu-down"></b-icon>-->
     </a>
     <b-dropdown-item custom aria-role="menuitem">
       <span v-if="userType === 'ADMIN'">
         <b>ADMIN</b>
-        <br/>
+        <br />
       </span>
       Logged as <b>{{ this.username }}</b>
     </b-dropdown-item>
     <hr class="dropdown-divider" />
     <b-dropdown-item value="home" aria-role="menuitem">
-      <b-icon icon="home"></b-icon>
+      <!--      <b-icon icon="home"></b-icon>-->
       Invoices
     </b-dropdown-item>
     <div v-if="userType === 'ADMIN'">
@@ -27,13 +27,13 @@
         <b>Admin Options</b>
       </b-dropdown-item>
       <b-dropdown-item value="Products" aria-role="menuitem">
-        <b-icon icon="logout"></b-icon>
+        <!--        <b-icon icon="logout"></b-icon>-->
         Products
       </b-dropdown-item>
     </div>
     <hr class="dropdown-divider" aria-role="menuitem" />
     <b-dropdown-item @click="logout()" value="logout" aria-role="menuitem">
-      <b-icon icon="logout"></b-icon>
+      <!--      <b-icon icon="logout"></b-icon>-->
       Logout
     </b-dropdown-item>
   </b-dropdown>
