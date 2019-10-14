@@ -92,6 +92,12 @@
                 >
                   <strong> Add To Cart ! </strong>
                 </button>
+
+                <button align="center"
+                        class="button is-primary is is-large"
+                        style="margin: 10px">
+                  <a :href = "'../edtProd/'+ this.product.Id "><strong>Edit Product</strong></a>
+                </button>
                 <!--                      </article>-->
               </div>
             </article>
@@ -176,7 +182,7 @@ export default {
       vm.product = vm.$store.getters["product/getProduct"];
       vm.price = vm.product.productOptions[vm.optIndex].price;
     });
-  }
+  },
 };
 </script>
 

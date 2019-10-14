@@ -7,7 +7,7 @@ import Login from "./views/Login";
 import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
 
-import EditProducts from "./views/EditProducts";
+import edtProd from "./views/EditProducts";
 
 import Cart from "./views/Cart";
 import SpecProd from "./views/SpecProd";
@@ -52,9 +52,9 @@ export default new Router({
     },
     {
 
-      path: "/editproducts",
-      component: EditProducts,
-      name: "editproducts"
+      path: "/edtProd/:Id",
+      component: edtProd,
+      name: "edtProd"
     },
     {
       path :"/cart",
