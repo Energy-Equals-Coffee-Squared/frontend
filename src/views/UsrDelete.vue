@@ -138,45 +138,48 @@ export default {
   },
   methods: {
     ...mapGetters("user", ["getUserDetails", "getUserType"]),
-    DeleteUser: function(UId) {
+    DeleteUser: function (UId) {
       (UId = this.UsrID),
-        axios
-          .post("http://localhost:5000/api/Users/Delete", null, {
-            params: {
-              id: UId
-            }
-          })
-          .then(response => {
-            this.Response = response.data;
-            // eslint-disable-next-line no-console
-            console.log(response);
-          })
-          .catch(error => {});
+              axios
+                      .post("http://localhost:5000/api/Users/Delete", null, {
+                        params: {
+                          id: UId
+                        }
+                      })
+                      .then(response => {
+                        this.Response = response.data;
+                        // eslint-disable-next-line no-console
+                        console.log(response);
+                      })
+                      .catch(error => {
+                      });
 
-  },
-  beforeCreate() {
-    this.UsrID = this.$route.params.Id;
-    // eslint-disable-next-line no-console
-    console.log("User ID :  " + this.UsrID);
-  },
-  async created() {
-    this.UsrID = this.$route.params.Id;
-    this.userType = this.$store.getters["user/getUserType"];
-    if (this.userType === "ADMIN") {
-      try {
-        await axios
-          .get("http://localhost:5000/api/Users/" + this.UsrID)
-          .then(response => {
-            this.user = response.data;
-            // eslint-disable-next-line no-console
-            console.log(this.user);
-          })
-          .catch(error => {});
-      } catch (e) {
-        console.error(e);
+    },
+    beforeCreate() {
+      this.UsrID = this.$route.params.Id;
+      // eslint-disable-next-line no-console
+      console.log("User ID :  " + this.UsrID);
+    },
+    async created() {
+      this.UsrID = this.$route.params.Id;
+      this.userType = this.$store.getters["user/getUserType"];
+      if (this.userType === "ADMIN") {
+        try {
+          await axios
+                  .get("http://localhost:5000/api/Users/" + this.UsrID)
+                  .then(response => {
+                    this.user = response.data;
+                    // eslint-disable-next-line no-console
+                    console.log(this.user);
+                  })
+                  .catch(error => {
+                  });
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        this.$router.go(-1);
       }
-    } else {
-      this.$router.go(-1);
     }
   }
 };
