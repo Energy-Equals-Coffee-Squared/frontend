@@ -19,9 +19,9 @@
     <hr class="dropdown-divider" />
 
     <b-dropdown-item href="/invoices" value="home" aria-role="menuitem">
-<!--      <router-link to="/invoices">-->
-        Invoices
-<!--      </router-link>-->
+      <!--      <router-link to="/invoices">-->
+      Invoices
+      <!--      </router-link>-->
     </b-dropdown-item>
 
     <div v-if="userType === 'ADMIN'">
@@ -31,9 +31,15 @@
       </b-dropdown-item>
 
       <b-dropdown-item href="/admin/products" value="home" aria-role="menuitem">
-<!--        <router-link class="is-fullwidth" to="/admin/products">-->
-          Products
-<!--        </router-link>-->
+        <!--        <router-link class="is-fullwidth" to="/admin/products">-->
+        Products
+        <!--        </router-link>-->
+      </b-dropdown-item>
+
+      <b-dropdown-item href="/admin/Users" value="home" aria-role="menuitem">
+        <!--        <router-link class="is-fullwidth" to="/admin/products">-->
+        User Management
+        <!--        </router-link>-->
       </b-dropdown-item>
     </div>
     <hr class="dropdown-divider" aria-role="menuitem" />

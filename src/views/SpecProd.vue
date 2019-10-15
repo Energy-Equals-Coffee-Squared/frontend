@@ -93,15 +93,15 @@
                   <strong> Add To Cart ! </strong>
                 </button>
 
-                <button
-                  align="center"
-                  class="button is-primary is is-large"
-                  style="margin: 10px"
-                >
-                  <a :href="'../edtProd/' + this.product.Id"
-                    ><strong>Edit Product</strong></a
-                  >
-                </button>
+<!--                <button-->
+<!--                  align="center"-->
+<!--                  class="button is-primary is is-large"-->
+<!--                  style="margin: 10px"-->
+<!--                >-->
+<!--                  <a :href="'../edtProd/' + this.product.Id"-->
+<!--                    ><strong>Edit Product</strong></a-->
+<!--                  >-->
+<!--                </button>-->
                 <!--                      </article>-->
               </div>
             </article>
