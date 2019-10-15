@@ -65,7 +65,7 @@
                 class="input"
                 type="text"
                 :placeholder="this.user.email"
-                v-model="email"
+                v-model="em"
               />
             </div>
           </div>
@@ -138,7 +138,7 @@ export default {
       username: "",
       f_name: "",
       l_name: "",
-      email: "",
+      em: "",
       contactn: "",
       Active: "",
       Deleted: "",
@@ -157,17 +157,19 @@ export default {
           params: {
             Id: this.UsrID,
             username: this.username,
-            email: this.email,
+            email: this.em,
             f_name: this.f_name,
             l_name: this.l_name,
-            c_number: this.c_number,
-            is_active: this.is_active,
-            is_deleted: this.is_deleted,
-            is_admin: this.is_admin
+            c_number: this.contactn,
+            is_active: this.Active,
+            is_deleted: this.Deleted,
+            is_admin: this.Admin
+
           }
         })
         .then(function(response) {
           let respData = response.data;
+          console.log(response);
           if (respData.Status === "error") {
             console.log("errooooor");
           } else if (respData.Status === "success") {

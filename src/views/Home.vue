@@ -1,17 +1,24 @@
 <template>
- <div class="container" style="transform: scale(); margin-top: 200px">
+    <div>
+        <div class="col " align="center" style="margin-top: 25px">
+        <h1 style="font-size: xx-large"> <strong>  Need Beans ?  </strong></h1>
+        </div>
+ <div class="container" style="transform: scale(); margin-top: 50px">
    <carousel>
-     <slide> <img src="../../src/assets/images/coffeehow.png" height="600px" width="600px">
-     <p> Learn How Coffee is made </p>
+     <slide class="slide"> <img src="../../src/assets/images/home/1.jpg" height="672" width="477.22">
      </slide>
-       <slide> <img src="../../src/assets/images/perfectcoffee.jpg" height="600px" width="600px">
-           <p> Learn how to make the perfect cup of coffee</p>
+       <slide class="slide"> <img src="../../src/assets/images/home/2.jpg" height="672" width="477.22">
        </slide>
-       <slide> <img src="../../src/assets/images/coffeejoin.jpg" height="600px" width="600px">
-           <p> Join our newsletter</p>
+       <slide class="slide"> <img src="../../src/assets/images/home/3.jpg" height="672" width="477.22">
        </slide>
+
+           <slide class="slide"> <img src="../../src/assets/images/home/4.jpg" height="672" width="477.22">
+           </slide>
    </carousel>
-     <h1>Come explore our wide range of coffees</h1>
+ </div>
+        <div class="col " align="center">
+        <h1 style="font-size: xx-large"><strong> We Got You !  </strong></h1>
+        </div>
   </div>
 </template>
 
@@ -27,5 +34,13 @@ export default {
 </script>
 
 <style>
+    .VueCarousel-wrapper{
+        height: 500px;
+    }
+    .VueCarousel-slide{
+        flex-basis:auto;
+        /*margin-left: 10px;*/
+        /*margin-right: 10px;*/
+    }
 
 </style>

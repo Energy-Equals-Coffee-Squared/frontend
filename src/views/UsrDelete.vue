@@ -23,7 +23,7 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.name"
+                :placeholder="this.user.username"
                 disabled="true"
               />
             </div>
@@ -77,31 +77,35 @@
             </div>
           </div>
           <!--TODO Check the user ACtive Part-->
-          <div class="field">
-            <label class="label">User Active</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="this.UsrID"
-                disabled="true"
-              />
-            </div>
-          </div>
+          <!--          <div class="field">-->
+          <!--            <label class="label">User Active</label>-->
+          <!--            <div class="control">-->
+          <!--              <input-->
+          <!--                class="input"-->
+          <!--                type="text"-->
+          <!--                :placeholder="this.user.is_active"-->
+          <!--                disabled="true"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="field">
-            <label class="label">User Is Admin</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="this.user.isAdmin"
-                disabled="true"
-              />
-            </div>
-          </div>
+          <!--          <div class="field">-->
+          <!--            <label class="label">User Is Admin</label>-->
+          <!--            <div class="control">-->
+          <!--              <input-->
+          <!--                class="input"-->
+          <!--                type="text"-->
+          <!--                :placeholder="this.user.is_admin"-->
+          <!--                disabled="true"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <button class="button is-primary" style="margin: 25px">
+          <button
+            class="button is-primary"
+            style="margin: 25px"
+            @click="DeleteUser(UsrID)"
+          >
             Delete User
           </button>
         </div>
@@ -126,11 +130,28 @@ export default {
       Active: "",
       Deleted: "",
       Admin: "",
-      UsrID: ''
+      UsrID: "",
+      Response: []
     };
   },
   methods: {
-    ...mapGetters("user", ["getUserDetails", "getUserType"])
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    DeleteUser: function(UId) {
+      (UId = this.UsrID),
+        axios
+          .post("http://localhost:5000/api/Users/Delete", null, {
+            params: {
+              id: UId
+            }
+          })
+          .then(response => {
+            this.Response = response.data;
+            // eslint-disable-next-line no-console
+            console.log(response);
+          })
+          .catch(error => {});
+
+    }
   },
   beforeCreate() {
     this.UsrID = this.$route.params.Id;
@@ -138,12 +159,12 @@ export default {
     console.log("User ID :  " + this.UsrID);
   },
   async created() {
-      this.UsrID = this.$route.params.Id;
+    this.UsrID = this.$route.params.Id;
     this.userType = this.$store.getters["user/getUserType"];
     if (this.userType === "ADMIN") {
       try {
         await axios
-          .get("http://localhost:5000/api/Users/Delete/" +this.UsrID)
+          .get("http://localhost:5000/api/Users/" + this.UsrID)
           .then(response => {
             this.user = response.data;
             // eslint-disable-next-line no-console

@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="title has-text-centered">
-      Products
+      User
     </div>
     <b-table :data="Users" :bordered="true" :striped="true" :hoverable="true">
       <template slot-scope="props">
