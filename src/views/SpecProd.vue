@@ -93,10 +93,14 @@
                   <strong> Add To Cart ! </strong>
                 </button>
 
-                <button align="center"
-                        class="button is-primary is is-large"
-                        style="margin: 10px">
-                  <a :href = "'../edtProd/'+ this.product.Id "><strong>Edit Product</strong></a>
+                <button
+                  align="center"
+                  class="button is-primary is is-large"
+                  style="margin: 10px"
+                >
+                  <a :href="'../edtProd/' + this.product.Id"
+                    ><strong>Edit Product</strong></a
+                  >
                 </button>
                 <!--                      </article>-->
               </div>
@@ -165,24 +169,32 @@ export default {
       let price = this.product.productOptions[this.optIndex].price;
       let qty = this.quantity;
 
-      let promise = this.$store.dispatch("cart/addToCart", [prodID, optID, name, weight, price, qty]);
-      if(promise){
+      let promise = this.$store.dispatch("cart/addToCart", [
+        prodID,
+        optID,
+        name,
+        weight,
+        price,
+        qty
+      ]);
+      if (promise) {
         this.$router.push("../cart");
       }
-
     }
   },
-  beforeCreate() {
+  async beforeCreate() {
     this.urlID = this.$route.params.Id;
     // eslint-disable-next-line no-console
     console.log("this is the passed ID :" + this.urlID);
     // Create and populate array
     let vm = this;
-    this.$store.dispatch("product/getProduct", this.urlID).then(function() {
-      vm.product = vm.$store.getters["product/getProduct"];
-      vm.price = vm.product.productOptions[vm.optIndex].price;
-    });
-  },
+    await this.$store
+      .dispatch("product/getProduct", this.urlID)
+      .then(function() {
+        vm.product = vm.$store.getters["product/getProduct"];
+        vm.price = vm.product.productOptions[vm.optIndex].price;
+      });
+  }
 };
 </script>
 

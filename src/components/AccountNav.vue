@@ -17,18 +17,23 @@
       Logged as <b>{{ this.username }}</b>
     </b-dropdown-item>
     <hr class="dropdown-divider" />
-    <b-dropdown-item value="home" aria-role="menuitem">
-      <!--      <b-icon icon="home"></b-icon>-->
-      Invoices
+
+    <b-dropdown-item href="/invoices" value="home" aria-role="menuitem">
+<!--      <router-link to="/invoices">-->
+        Invoices
+<!--      </router-link>-->
     </b-dropdown-item>
+
     <div v-if="userType === 'ADMIN'">
       <hr class="dropdown-divider" aria-role="menuitem" />
       <b-dropdown-item custom aria-role="menuitem">
         <b>Admin Options</b>
       </b-dropdown-item>
-      <b-dropdown-item value="Products" aria-role="menuitem">
-        <!--        <b-icon icon="logout"></b-icon>-->
-        Products
+
+      <b-dropdown-item href="/admin/products" value="home" aria-role="menuitem">
+<!--        <router-link class="is-fullwidth" to="/admin/products">-->
+          Products
+<!--        </router-link>-->
       </b-dropdown-item>
     </div>
     <hr class="dropdown-divider" aria-role="menuitem" />

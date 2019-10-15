@@ -53,7 +53,7 @@ export default {
   },
   async created() {
     try {
-      axios
+      await axios
         .get("http://localhost:5000/api/Products")
         .then(response => {
           this.Products = response.data;

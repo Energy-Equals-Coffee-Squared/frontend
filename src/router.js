@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Register from "./views/Register";
-import Home from "./views/Home"
+import Home from "./views/Home";
 import Products from "./views/Products";
 import Login from "./views/Login";
 import About from "./views/About";
@@ -10,8 +10,10 @@ import CoffeeHelp from "./views/CoffeeHelp";
 import edtProd from "./views/EditProducts";
 
 import Cart from "./views/Cart";
+import Invoices from "./views/Invoices";
+import SpecificInvoice from "./views/SpecificInvoice";
 import SpecProd from "./views/SpecProd";
-
+import AdminProducts from "./views/AdminProducts";
 
 Vue.use(Router);
 
@@ -33,40 +35,52 @@ export default new Router({
     {
       path: "/product",
       component: Products,
-      name:"products"
+      name: "products"
     },
     {
       path: "/login",
       component: Login,
-      name:"login"
+      name: "login"
     },
     {
       path: "/about",
       component: About,
-      name:"about"
+      name: "about"
     },
     {
-      path : "/coffeehelp",
-      component:CoffeeHelp,
-      name:"coffeehelp"
+      path: "/coffeehelp",
+      component: CoffeeHelp,
+      name: "coffeehelp"
     },
     {
-
-      path: "/edtProd/:Id",
+      path: "/cart",
+      component: Cart,
+      name: "cart"
+    },
+    {
+      path: "/invoices",
+      component: Invoices,
+      name: "invoices"
+    },
+    {
+      path: "/invoices/:Id",
+      component: SpecificInvoice,
+      name: "SpecificInvoice"
+    },
+    {
+      path: "/product/:Id",
+      component: SpecProd,
+      name: "SpecProd"
+    },
+    {
+      path: "/admin/editProduct/:Id",
       component: edtProd,
       name: "edtProd"
     },
     {
-      path :"/cart",
-      component: Cart,
-      name:"cart"
-
-    },
-    {
-      path :"/product/:Id",
-      component: SpecProd,
-      name: "SpecProd"
+      path: "/admin/products",
+      component: AdminProducts,
+      name: "AdminProducts"
     }
-
   ]
 });

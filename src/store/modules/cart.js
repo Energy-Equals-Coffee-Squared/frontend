@@ -71,6 +71,9 @@ export default {
       if (index > -1) {
         state.items.splice(index, 1);
       }
+    },
+    emptyCart: (state)=>{
+      state.items = [];
     }
   },
 
@@ -140,7 +143,7 @@ export default {
                 commit("error/showError", null, { root: true });
                 return false;
               } else if (respData.Status === "success") {
-                InvoiceID = respData.Message.Id;
+                commit("emptyCart");
               }
             })
             .catch(function(error) {

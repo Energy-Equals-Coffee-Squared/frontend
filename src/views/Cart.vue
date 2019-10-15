@@ -110,7 +110,6 @@ export default {
   data() {
     return {
       cartItems: [],
-      quantities: [],
       cartTotal: 0,
       userType: "GUEST"
     };
@@ -139,7 +138,15 @@ export default {
     },
     updateCart() {
       this.cartItems = this.$store.getters["cart/getCartItems"];
+      if (!this.cartItems){
+        this.cartItems = [];
+      }
+      console.log("Items in cart");
+      console.log(this.cartItems);
       this.cartTotal = this.$store.getters["cart/cartTotalAmount"];
+      if (!this.cartTotal){
+        this.cartTotal = 0;
+      }
     },
     updateQuantity(optID, qty) {
       if (qty >= 1) {
@@ -151,8 +158,10 @@ export default {
       this.$store.dispatch("cart/removeFromCart", optID);
       this.updateCart();
     },
-    payNow() {
-      this.$store.dispatch("cart/addToInvoice");
+    async payNow() {
+      await this.$store.dispatch("cart/addToInvoice");
+      this.updateCart();
+      await this.$router.push("invoices");
     }
   },
   created() {

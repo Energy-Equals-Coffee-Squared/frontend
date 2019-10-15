@@ -4,7 +4,12 @@
     id="app"
     style="background-color: #ebddc4 ; height:auto; min-height: 100vh"
   >
-    <b-loading style="background-color: #ce9021" :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
+    <b-loading
+      style="background-color: #ce9021"
+      :is-full-page="true"
+      :active.sync="isLoading"
+      :can-cancel="false"
+    ></b-loading>
     <div class="parent" v-if="!isLoading">
       <!--      Body tag -->
       <section>
@@ -13,63 +18,58 @@
           <b-navbar>
             <template slot="brand">
               <b-navbar-item class="itemHeight" href="/">
-                <img src="../src/assets/images/Logo.png" rel="preload" alt=""/>
+                <img src="../src/assets/images/Logo.png" rel="preload" alt="" />
               </b-navbar-item>
             </template>
             <template slot="start">
-              <b-navbar-item href="/">
-                <h1 style="font-size: 21px">Home</h1>
-              </b-navbar-item>
+              <router-link to="/">
+                <b-navbar-item style="height: 100%;">
+                  <h1 style="font-size: 21px">Home</h1>
+                </b-navbar-item>
+              </router-link>
 
-              <b-navbar-item href="/product">
-                <!--                <router-link to="Products"></router-link>-->
+              <router-link to="/product">
+                <b-navbar-item style="height: 100%;">
+                  <h1 style="font-size: 21px">Products</h1>
+                </b-navbar-item>
+              </router-link>
 
-                <h1 style="font-size: 21px">Products</h1>
-              </b-navbar-item>
+              <router-link to="/about">
+                <b-navbar-item style="height: 100%;">
+                  <h1 style="font-size: 21px">About Us</h1>
+                </b-navbar-item>
+              </router-link>
 
-              <b-navbar-item href="/about">
-                <h1 style="font-size: 21px">About Us</h1>
-              </b-navbar-item>
-
-              <b-navbar-item href="/coffeehelp">
-                <h1 style="font-size: 21px">Help Finding The Perfect Bean</h1>
-              </b-navbar-item>
-
-              <b-navbar-item
-                class="editProd"
-                id="editProd"
-                href="/editproducts"
-              >
-                <h1 style="font-size: 21px">Edit Products</h1>
-              </b-navbar-item>
+              <router-link to="/coffeehelp">
+                <b-navbar-item style="height: 100%;">
+                  <h1 style="font-size: 21px">Help Finding The Perfect Bean</h1>
+                </b-navbar-item>
+              </router-link>
             </template>
 
             <template slot="end">
               <b-navbar-item tag="div">
                 <div class="buttons">
-                  <a class="button is-secondary" href="/cart">
+                  <router-link class="button is-secondary" to="/cart">
                     <img
                       width="25"
                       src="../src/assets/images/shopping-cart.svg"
                       rel="preload"
                       alt="Cart"
                     />
-                  </a>
-                  <a
-                    v-if="userType === 'GUEST'"
-                    class="button is-light"
-                    href="/register"
-                    style="background-color: #ebddc4; "
-                  >
-                    <strong> Sign Up </strong>
-                  </a>
-                  <a
-                    v-if="userType === 'GUEST'"
-                    class="button is-primary"
-                    href="/login"
-                  >
-                    Log in
-                  </a>
+                  </router-link>
+                  <span v-if="userType === 'GUEST'">
+                    <router-link
+                      class="button is-light"
+                      style="background-color: #ebddc4; "
+                      to="/register"
+                    >
+                      <strong> Sign Up </strong>
+                    </router-link>
+                    <router-link class="button is-primary" to="/login">
+                      Log in
+                    </router-link>
+                  </span>
                   <account-nav v-if="userType !== 'GUEST'"></account-nav>
                 </div>
               </b-navbar-item>
@@ -90,7 +90,6 @@
 </template>
 
 <script>
-
 //Import for Login
 import LoginNav from "./components/LoginNav";
 import Register from "./views/Register";
@@ -128,13 +127,22 @@ export default {
     ...mapActions("error", ["deleteError"]),
     ...mapGetters("user", ["getUserDetails", "getUserType"])
   },
+  watch: {
+    $route(to, from) {
+      this.$store.commit("error/deleteError");
+      this.userType = this.$store.getters["user/getUserType"];
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 50);
+    }
+  },
   created() {
     //remove errors on page reload
     this.$store.commit("error/deleteError");
     this.userType = this.$store.getters["user/getUserType"];
     setTimeout(() => {
       this.isLoading = false;
-    }, 500);
+    }, 50);
   }
 };
 </script>
