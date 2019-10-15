@@ -21,11 +21,7 @@ Vue.use(Buefy, {
 // import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import VueCarousel from "@chenfengyuan/vue-carousel";
-
-// library.add(faCoffee)
-// library.add(faShoppingCart)
-
+import VueCarousel from 'vue-carousel';
 Vue.use(VueCarousel);
 // Vue.component('font-awesome-icon', FontAwesomeIcon);
 

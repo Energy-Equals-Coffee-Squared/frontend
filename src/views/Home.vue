@@ -1,32 +1,31 @@
 <template>
-  <div class="container" style="margin: 500px">
-<!--    <carousel :data="data"> </carousel>-->
+ <div class="container" style="transform: scale(); margin-top: 200px">
+   <carousel>
+     <slide> <img src="../../src/assets/images/coffeehow.png" height="600px" width="600px">
+     <p> Learn How Coffee is made </p>
+     </slide>
+       <slide> <img src="../../src/assets/images/perfectcoffee.jpg" height="600px" width="600px">
+           <p> Learn how to make the perfect cup of coffee</p>
+       </slide>
+       <slide> <img src="../../src/assets/images/coffeejoin.jpg" height="600px" width="600px">
+           <p> Join our newsletter</p>
+       </slide>
+   </carousel>
+     <h1>Come explore our wide range of coffees</h1>
   </div>
 </template>
 
 <script>
+  import { Carousel, Slide } from 'vue-carousel';
 
 export default {
-  data() {
-    return {
-      data: [
-        '<div class= "Product"><display-product> where </display-product></div>',
-        '<div class="Product">Slide 2</div>',
-        '<div class="Product">Slide 3</div>'
-      ]
-    };
+  components: {
+    Carousel,
+    Slide
   }
 };
 </script>
 
 <style>
-.Product {
-  align-items: center;
-  background-color: #666;
-  color: #999;
-  display: flex;
-  font-size: 1.5rem;
-  justify-content: center;
-  min-height: 10rem;
-}
+
 </style>
