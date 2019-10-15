@@ -77,32 +77,35 @@
             </div>
           </div>
           <!--TODO Check the user ACtive Part-->
+          <!--          <div class="field">-->
+          <!--            <label class="label">User Active</label>-->
+          <!--            <div class="control">-->
+          <!--              <input-->
+          <!--                class="input"-->
+          <!--                type="text"-->
+          <!--                :placeholder="this.user.is_active"-->
+          <!--                disabled="true"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="field">
-            <label class="label">User Active</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="this.isActive ? 'true' : 'false'"
-                disabled="true"
-              />
-            </div>
-          </div>
+          <!--          <div class="field">-->
+          <!--            <label class="label">User Is Admin</label>-->
+          <!--            <div class="control">-->
+          <!--              <input-->
+          <!--                class="input"-->
+          <!--                type="text"-->
+          <!--                :placeholder="this.user.is_admin"-->
+          <!--                disabled="true"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
 
-          <div class="field">
-            <label class="label">User Is Admin</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="this.user.isAdmin ? 'true' : 'false'"
-                disabled="true"
-              />
-            </div>
-          </div>
-
-          <button @click="deleteUser" class="button is-primary" style="margin: 25px">
+          <button
+            class="button is-primary"
+            style="margin: 25px"
+            @click="DeleteUser(UsrID)"
+          >
             Delete User
           </button>
         </div>
@@ -128,9 +131,7 @@ export default {
       Deleted: "",
       Admin: "",
       UsrID: "",
-      Response: [],
-      UsrID: ""
-
+      Response: []
     };
   },
   computed: {
@@ -138,48 +139,45 @@ export default {
   },
   methods: {
     ...mapGetters("user", ["getUserDetails", "getUserType"]),
-    DeleteUser: function (UId) {
+    DeleteUser: function(UId) {
       (UId = this.UsrID),
-              axios
-                      .post("http://localhost:5000/api/Users/Delete", null, {
-                        params: {
-                          id: UId
-                        }
-                      })
-                      .then(response => {
-                        this.Response = response.data;
-                        // eslint-disable-next-line no-console
-                        console.log(response);
-                      })
-                      .catch(error => {
-                      });
-
-    },
-    beforeCreate() {
-      this.UsrID = this.$route.params.Id;
-      // eslint-disable-next-line no-console
-      console.log("User ID :  " + this.UsrID);
-    },
-    async created() {
-      this.UsrID = this.$route.params.Id;
-      this.userType = this.$store.getters["user/getUserType"];
-      if (this.userType === "ADMIN") {
-        try {
-          await axios
-                  .get("http://localhost:5000/api/Users/" + this.UsrID)
-                  .then(response => {
-                    this.user = response.data;
-                    // eslint-disable-next-line no-console
-                    console.log(this.user);
-                  })
-                  .catch(error => {
-                  });
-        } catch (e) {
-          console.error(e);
-        }
-      } else {
-        this.$router.go(-1);
+        axios
+          .post("http://localhost:5000/api/Users/Delete", null, {
+            params: {
+              id: UId
+            }
+          })
+          .then(response => {
+            this.Response = response.data;
+            // eslint-disable-next-line no-console
+            console.log(response);
+          })
+          .catch(error => {});
+    }
+  },
+  beforeCreate() {
+    this.UsrID = this.$route.params.Id;
+    // eslint-disable-next-line no-console
+    console.log("User ID :  " + this.UsrID);
+  },
+  async created() {
+    this.UsrID = this.$route.params.Id;
+    this.userType = this.$store.getters["user/getUserType"];
+    if (this.userType === "ADMIN") {
+      try {
+        await axios
+          .get("http://localhost:5000/api/Users/" + this.UsrID)
+          .then(response => {
+            this.user = response.data;
+            // eslint-disable-next-line no-console
+            console.log(this.user);
+          })
+          .catch(error => {});
+      } catch (e) {
+        console.error(e);
       }
+    } else {
+      this.$router.go(-1);
     }
   }
 };
