@@ -23,7 +23,7 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.name"
+                :placeholder="this.user.username"
                 disabled="true"
               />
             </div>
@@ -83,7 +83,7 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.UsrID"
+                :placeholder="this.isActive ? 'true' : 'false'"
                 disabled="true"
               />
             </div>
@@ -95,13 +95,13 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.isAdmin"
+                :placeholder="this.user.isAdmin ? 'true' : 'false'"
                 disabled="true"
               />
             </div>
           </div>
 
-          <button class="button is-primary" style="margin: 25px">
+          <button @click="deleteUser" class="button is-primary" style="margin: 25px">
             Delete User
           </button>
         </div>
@@ -126,11 +126,36 @@ export default {
       Active: "",
       Deleted: "",
       Admin: "",
-      UsrID: ''
+      UsrID: ""
     };
   },
+  computed: {
+    ...mapState("error", ["errorText", "errorShow"])
+  },
   methods: {
-    ...mapGetters("user", ["getUserDetails", "getUserType"])
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    deleteUser() {
+      axios
+        .post("http://localhost:5000/api/Users/Delete", null, {
+          params: {
+            Id: this.UsrID
+          }
+        })
+        .then(function(response) {
+          let respData = response.data;
+          if (respData.Status === "error") {
+            console.log("errooooor");
+          } else if (respData.Status === "success") {
+            //what you want to do if succesfull
+            return true;
+          }
+        })
+        .catch(function(error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          return false;
+        });
+    }
   },
   beforeCreate() {
     this.UsrID = this.$route.params.Id;
@@ -138,12 +163,12 @@ export default {
     console.log("User ID :  " + this.UsrID);
   },
   async created() {
-      this.UsrID = this.$route.params.Id;
+    this.UsrID = this.$route.params.Id;
     this.userType = this.$store.getters["user/getUserType"];
     if (this.userType === "ADMIN") {
       try {
         await axios
-          .get("http://localhost:5000/api/Users/Delete/" +this.UsrID)
+          .get("http://localhost:5000/api/Users/" + this.UsrID)
           .then(response => {
             this.user = response.data;
             // eslint-disable-next-line no-console
