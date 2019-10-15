@@ -126,7 +126,7 @@ export default {
       Active: "",
       Deleted: "",
       Admin: "",
-      UsrID: ""
+      UsrID: ''
     };
   },
   methods: {
@@ -135,15 +135,15 @@ export default {
   beforeCreate() {
     this.UsrID = this.$route.params.Id;
     // eslint-disable-next-line no-console
-    console.log("USer ID" + this.UsrID);
-    // console.log("this is the passed ID :" + this.UsrID);
+    console.log("User ID :  " + this.UsrID);
   },
   async created() {
+      this.UsrID = this.$route.params.Id;
     this.userType = this.$store.getters["user/getUserType"];
     if (this.userType === "ADMIN") {
       try {
         await axios
-          .get("http://localhost:5000/api/Users/Delete/" + this.UsrID)
+          .get("http://localhost:5000/api/Users/Delete/" +this.UsrID)
           .then(response => {
             this.user = response.data;
             // eslint-disable-next-line no-console

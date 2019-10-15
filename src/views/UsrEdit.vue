@@ -151,6 +151,7 @@
             console.log("this is the passed ID :" + this.UsrID);
         },
         async created() {
+            this.UsrID = this.$route.params.Id;
             this.userType = this.$store.getters["user/getUserType"];
             if (this.userType === "ADMIN") {
                 try {
