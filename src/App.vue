@@ -129,11 +129,12 @@ export default {
   },
   watch: {
     $route(to, from) {
+      this.isLoading = false;
       this.$store.commit("error/deleteError");
       this.userType = this.$store.getters["user/getUserType"];
       setTimeout(() => {
         this.isLoading = false;
-      }, 50);
+      }, 100);
     }
   },
   created() {

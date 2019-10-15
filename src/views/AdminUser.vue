@@ -12,10 +12,6 @@
           {{ props.row.username }}
         </b-table-column>
 
-        <b-table-column field="name" label="name">
-          {{ props.row.name }}
-        </b-table-column>
-
         <b-table-column field="first_name" label="first_name">
           {{ props.row.first_name }}
         </b-table-column>
@@ -29,14 +25,16 @@
           {{ props.row.email }}
         </b-table-column>
         <b-table-column field="isAdmin" label="isAdmin">
-<!--          {{ (props.row.isAdmin }}-->
+          {{ props.row.isAdmin ? "true" : "false" }}
         </b-table-column>
         <b-table-column field="isDeleted" label="isDeleted">
           <!--                    {{ (props.row.isDeleted }}-->
+          {{ props.row.isDelted ? "true" : "false" }}
         </b-table-column>
 
         <b-table-column field="isActve" label="isActve">
           <!--                    {{ (props.row.isActive}}-->
+          {{ props.row.isActive ? "true" : "false" }}
         </b-table-column>
 
         <b-table-column field="actions" label="actions">
@@ -46,13 +44,12 @@
             style="margin : 5px"
             >EDIT</router-link
           >
-
-            <router-link
-                    class="button is-primary"
-                    :to="'/admin/UsrDelete/' + props.row.Id"
-                    style="margin : 5px"
+          <router-link
+            class="button is-primary"
+            :to="'/admin/UsrDelete/' + props.row.Id"
+            style="margin : 5px"
             >DELETE</router-link
-            >
+          >
         </b-table-column>
       </template>
     </b-table>
