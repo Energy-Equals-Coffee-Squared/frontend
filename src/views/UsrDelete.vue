@@ -77,35 +77,32 @@
             </div>
           </div>
           <!--TODO Check the user ACtive Part-->
-          <!--          <div class="field">-->
-          <!--            <label class="label">User Active</label>-->
-          <!--            <div class="control">-->
-          <!--              <input-->
-          <!--                class="input"-->
-          <!--                type="text"-->
-          <!--                :placeholder="this.user.is_active"-->
-          <!--                disabled="true"-->
-          <!--              />-->
-          <!--            </div>-->
-          <!--          </div>-->
 
-          <!--          <div class="field">-->
-          <!--            <label class="label">User Is Admin</label>-->
-          <!--            <div class="control">-->
-          <!--              <input-->
-          <!--                class="input"-->
-          <!--                type="text"-->
-          <!--                :placeholder="this.user.is_admin"-->
-          <!--                disabled="true"-->
-          <!--              />-->
-          <!--            </div>-->
-          <!--          </div>-->
+          <div class="field">
+            <label class="label">User Active</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                :placeholder="this.isActive ? 'true' : 'false'"
+                disabled="true"
+              />
+            </div>
+          </div>
 
-          <button
-            class="button is-primary"
-            style="margin: 25px"
-            @click="DeleteUser(UsrID)"
-          >
+          <div class="field">
+            <label class="label">User Is Admin</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                :placeholder="this.user.isAdmin ? 'true' : 'false'"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <button @click="deleteUser" class="button is-primary" style="margin: 25px">
             Delete User
           </button>
         </div>
@@ -131,8 +128,13 @@ export default {
       Deleted: "",
       Admin: "",
       UsrID: "",
-      Response: []
+      Response: [],
+      UsrID: ""
+
     };
+  },
+  computed: {
+    ...mapState("error", ["errorText", "errorShow"])
   },
   methods: {
     ...mapGetters("user", ["getUserDetails", "getUserType"]),
@@ -151,7 +153,6 @@ export default {
           })
           .catch(error => {});
 
-    }
   },
   beforeCreate() {
     this.UsrID = this.$route.params.Id;
