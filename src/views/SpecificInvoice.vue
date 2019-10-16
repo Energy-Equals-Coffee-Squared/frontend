@@ -36,7 +36,7 @@
               R{{ (props.row.opt_price / 100).toFixed(2) }}
             </b-table-column>
             <b-table-column field="opt_weight" label="Weight">
-              {{ props.row.opt_weight }}
+              {{ props.row.opt_weight }}g
             </b-table-column>
             <b-table-column field="opt_price" label="Price">
               R{{
