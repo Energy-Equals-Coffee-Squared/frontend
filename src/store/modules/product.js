@@ -43,9 +43,9 @@ export default {
   },
 
   actions: {
-    getProduct: ({ commit }, prodID) => {
+    getProduct: async ({ commit }, prodID) => {
       try {
-        axios
+        await axios
           .get("http://localhost:5000/api/Products/" + prodID)
           .then(response => {
             commit("addProduct", response.data);

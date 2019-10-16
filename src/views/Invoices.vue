@@ -4,9 +4,9 @@
       Invoices
     </div>
     <div class="columns is-centered">
-      <div class="column is-half">
+      <div class="column is-narrow">
         <b-table
-          :data="Invoices"
+          :data="isEmpty ? [] : Invoices"
           :bordered="true"
           :striped="true"
           :hoverable="true"
@@ -15,11 +15,30 @@
             <b-table-column field="Id" label="Invoice ID">
               {{ props.row.Id }}
             </b-table-column>
-            <b-table-column field="created_at" label="created_at">
+            <b-table-column field="created_at" label="Completed">
               {{ props.row.created_at }}
             </b-table-column>
-            <b-table-column field="total" label="total">
-              R{{ (props.row.total / 100).toFixed(2) }}
+            <b-table-column field="isExpressShipping" label="Express Shipping">
+              {{ props.row.isExpressShipping ? "Yes" : "No" }}
+            </b-table-column>
+            <b-table-column field="discount_code" label="Discount Code">
+              {{ props.row.discount_code ? props.row.discount_code : "N/A" }}
+            </b-table-column>
+            <b-table-column
+              field="discount_percentage"
+              label="Discount %"
+            >
+              {{ props.row.discount_percentage }}%
+            </b-table-column>
+            <b-table-column field="tax" label="Tax">
+              R{{ (props.row.tax / 100).toFixed(2) }}
+            </b-table-column>
+            <b-table-column field="total" label="Total Paid">
+              R{{
+                props.row.isExpressShipping
+                  ? (props.row.total / 100).toFixed(2)
+                  : (props.row.total + 5000 / 100).toFixed(2)
+              }}
             </b-table-column>
             <b-table-column field="actions" label="actions">
               <router-link
@@ -28,6 +47,13 @@
                 >View</router-link
               >
             </b-table-column>
+          </template>
+          <template slot="empty">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>No Invoices To Show</p>
+              </div>
+            </section>
           </template>
         </b-table>
       </div>
@@ -45,7 +71,8 @@ export default {
     return {
       userType: "GUEST",
       userID: -1,
-      Invoices: []
+      Invoices: [],
+      isEmpty: true
     };
   },
   methods: {
@@ -71,6 +98,7 @@ export default {
               return false;
             } else if (respData.Status === "success") {
               this.Invoices = respData.Message;
+              this.isEmpty = this.Invoices.length === 0;
             }
           })
           .catch(error => {
