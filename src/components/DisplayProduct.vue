@@ -6,7 +6,7 @@
     <div class="has-text-right">
       <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
       <b-dropdown
-              style="background-color: #00adda; margin: 10px;"
+              style="background-color: #00adda; margin: 35px;"
               v-model="selectedFilters"
               multiple
               aria-role="list"
@@ -26,9 +26,16 @@
         </b-dropdown-item>
 
         <b-dropdown-item value="option3" aria-role="listitem">
-          <span>Price</span>
+          <p @click="PriceAsc">Price Ascending-Minimum</p>
         </b-dropdown-item>
+
+
+      <b-dropdown-item value="option4" aria-role="listitem">
+        <p @click="PriceDesc">Price Descending-Maximum</p>
+      </b-dropdown-item>
       </b-dropdown>
+
+
 
       <div class="container" align="center">
     <div class="columns is-multiline is-centered">
@@ -105,6 +112,34 @@ export default {
               .get("http://localhost:5000/api/Products", {
                 params: {
                   order: "name_desc"
+                }
+
+              })
+              .then(response => {
+                this.Products = response.data;
+                // eslint-disable-next-line no-console
+                console.log(response);
+              });
+    },
+    PriceDesc: function () {
+      axios
+              .get("http://localhost:5000/api/Products", {
+                params: {
+                  order: "price_desc"
+                }
+
+              })
+              .then(response => {
+                this.Products = response.data;
+                // eslint-disable-next-line no-console
+                console.log(response);
+              });
+    },
+    PriceAsc: function () {
+      axios
+              .get("http://localhost:5000/api/Products", {
+                params: {
+                  order: "name_asc"
                 }
 
               })
