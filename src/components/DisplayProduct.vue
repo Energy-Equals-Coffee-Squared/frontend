@@ -2,6 +2,35 @@
   <!--    I cant get it to make two columns-->
 
   <div>
+
+    <div class="has-text-right">
+      <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
+      <b-dropdown
+              style="background-color: #00adda; margin: 10px;"
+              v-model="selectedFilters"
+              multiple
+              aria-role="list"
+              class="is-horizontal"
+      >
+        <button class="button is-primary" type="button" slot="trigger">
+          <span>Search Filters</span>
+          <b-icon icon="menu-down"></b-icon>
+        </button>
+
+        <b-dropdown-item value="option1" aria-role="listitem">
+          <p @click="SortAsc">Name Ascending</p>
+        </b-dropdown-item>
+
+        <b-dropdown-item value="option2" aria-role="listitem">
+          <p @click="SortDesc">Name Descending</p>
+        </b-dropdown-item>
+
+        <b-dropdown-item value="option3" aria-role="listitem">
+          <span>Price</span>
+        </b-dropdown-item>
+      </b-dropdown>
+
+      <div class="container" align="center">
     <div class="columns is-multiline is-centered">
       <div class="column is-5" v-for="product of Products" :key="product.Id">
         <!--    To display products -->
@@ -38,6 +67,9 @@
       </div>
     </div>
   </div>
+    </div>
+  </div>
+
 
   <!--      </div>-->
 </template>
@@ -48,8 +80,40 @@ export default {
   name: "DisplayProduct",
   data() {
     return {
-      Products: []
+      Products: [],
+      selectedFilters: [],
     };
+  },
+
+  methods: {
+    SortAsc: function () {
+      axios
+              .get("http://localhost:5000/api/Products", {
+                params: {
+                  order: "name_asc"
+                }
+
+              })
+              .then(response => {
+                this.Products = response.data;
+                // eslint-disable-next-line no-console
+                console.log(response);
+              });
+    },
+    SortDesc: function () {
+      axios
+              .get("http://localhost:5000/api/Products", {
+                params: {
+                  order: "name_desc"
+                }
+
+              })
+              .then(response => {
+                this.Products = response.data;
+                // eslint-disable-next-line no-console
+                console.log(response);
+              });
+    }
   },
   async created() {
     try {
@@ -71,15 +135,6 @@ export default {
 </script>
 
 <style scoped>
-/*HELP ME*/
-.tile.is-primary:hover {
-  background-color: #86c232;
-}
 
-.button.is-primary {
-  background-color: #86c232;
-}
-.button.is-primary:hover {
-  background-color: #86c232;
-}
+
 </style>
