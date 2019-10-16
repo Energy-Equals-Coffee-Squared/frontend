@@ -17,6 +17,7 @@ import AdminProducts from "./views/AdminProducts";
 import UsrEdit from "./views/UsrEdit";
 import UsrDelete from "./views/UsrDelete";
 import AdminUser from "./views/AdminUser";
+import Reports from "./views/Reports";
 
 Vue.use(Router);
 
@@ -99,6 +100,11 @@ export default new Router({
       path: "/admin/UsrDelete/:Id",
       component: UsrDelete,
       name: "UsrDelete"
+    },
+    {
+      path: "/admin/Report",
+      component: Reports,
+      name: "Reports"
     }
   ]
 });

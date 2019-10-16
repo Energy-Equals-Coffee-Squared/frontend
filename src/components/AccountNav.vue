@@ -41,6 +41,13 @@
         User Management
         <!--        </router-link>-->
       </b-dropdown-item>
+
+
+      <b-dropdown-item href="/admin/Report" value="home" aria-role="menuitem">
+        <!--        <router-link class="is-fullwidth" to="/admin/products">-->
+        Reports
+        <!--        </router-link>-->
+      </b-dropdown-item>
     </div>
     <hr class="dropdown-divider" aria-role="menuitem" />
     <b-dropdown-item @click="logout()" value="logout" aria-role="menuitem">
