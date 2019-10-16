@@ -212,6 +212,19 @@
                       />
                     </div>
                   </div>
+                  <div class="columns">
+                    <div class="column is-narrow">
+                    <button class="button is-info">Edit</button>
+                    </div>
+
+                    <div class="column has-text-centered">
+                      <a class="button is-info">Add</a>
+                    </div>
+
+                    <div class="column is-narrow">
+                      <button class="button is-danger">Delete</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,6 +320,54 @@ export default {
         }
       })
     },
+    DeleteProd: function()
+    {
+      axios.post("http://localhost:5000/api/Products/EditProduct",null, {
+        params: {
+          inId : this.ProdID,
+          inName : this.ProdName,
+          inDesc : this.ProdDesc,
+          inRegion  : this.ProdRegion,
+          inRoast : this.ProdRoast,
+          inAltitude_max : this.ProdMaxAlt,
+          inAltitude_min : this.ProdMinAlt,
+          inBean_type : this.ProdBeanType,
+          inImage_url : this.ProdImgUrl,
+        }
+      })
+    },
+    AddProd: function()
+    {
+      axios.post("http://localhost:5000/api/Products/addProduct",null, {
+        params: {
+          inName : this.ProdName,
+          inDesc : this.ProdDesc,
+          inRegion  : this.ProdRegion,
+          inRoast : this.ProdRoast,
+          inAltitude_max : this.ProdMaxAlt,
+          inAltitude_min : this.ProdMinAlt,
+          inBean_type : this.ProdBeanType,
+          inImage_url : this.ProdImgUrl,
+        }
+      })
+    },
+    EdtProdOpt: function()
+    {
+      axios.post("http://localhost:5000/api/Products/addProduct",null, {
+        params: {
+          inName : this.ProdName,
+          inDesc : this.ProdDesc,
+          inRegion  : this.ProdRegion,
+          inRoast : this.ProdRoast,
+          inAltitude_max : this.ProdMaxAlt,
+          inAltitude_min : this.ProdMinAlt,
+          inBean_type : this.ProdBeanType,
+          inImage_url : this.ProdImgUrl,
+        }
+      })
+    },
+
+
   },
   beforeCreate() {
     this.ProdID = this.$route.params.Id;
