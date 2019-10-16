@@ -34,11 +34,7 @@
               R{{ (props.row.tax / 100).toFixed(2) }}
             </b-table-column>
             <b-table-column field="total" label="Total Paid">
-              R{{
-                props.row.isExpressShipping
-                  ? (props.row.total / 100).toFixed(2)
-                  : (props.row.total + 5000 / 100).toFixed(2)
-              }}
+              R{{(props.row.total / 100).toFixed(2)}}
             </b-table-column>
             <b-table-column field="actions" label="actions">
               <router-link
