@@ -48,36 +48,7 @@
           <!-- //CONTACT NUMBER -->
 
           <!-- NAMES -->
-          <label class="label">Price</label>
-          <div class="field is-horizontal">
-            <div class="field-body">
-              <!-- FIRSTNAME -->
-              <div class="field is-grouped">
-                <p class="control is-expanded">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="products.max_price"
-                    v-model="ProdMaxP"
-                  />
-                </p>
-              </div>
-              <!-- //FIRSTNAME -->
 
-              <!-- LASTNAME -->
-              <div class="field">
-                <p class="control is-expanded has-icon has-icon-right">
-                  <input
-                    class="input"
-                    type="email"
-                    :placeholder="products.min_price"
-                    v-model="ProdMinP"
-                  />
-                </p>
-              </div>
-              <!-- //LASTNAME -->
-            </div>
-          </div>
 
           <!-- //NAMES -->
 
@@ -162,170 +133,120 @@
             </div>
           </div>
 
-          <div class="field">
-            <label class="label">Date Created</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="products.created_at"
-                v-model="ProdCreated"
-              />
-            </div>
-          </div>
+<!--          <b-field grouped>-->
+<!--            <b-field label="Product Options">-->
+<!--              <b-select v-model="chosenProd" placeholder="Product Option ">-->
+<!--                <option-->
+<!--                  v-for="prod in products.productOptions"-->
+<!--                  :key="prod.Id"-->
+<!--                  >{{ prod.Id }}</option-->
+<!--                >-->
+<!--                &lt;!&ndash;                                After Choosing an option , populate the rest &ndash;&gt;-->
+<!--              </b-select>-->
+<!--            </b-field>-->
+            <div class="columns is-multiline">
+              <div
+                class="column is-one-third"
+                v-for="prod in products.productOptions"
+              >
+                <div class="box">
+                  <h1>Edit Product Options</h1>
 
-          <div class="field">
-            <label class="label">Date Updated</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                :placeholder="products.updated_at"
-                v-model="ProdUpdated"
-              />
-            </div>
-          </div>
+                  <div class="field">
+                    <label class="label">Price</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        :placeholder="'Current : R' + (prod.price/100).toFixed(2)"
+                        v-model="ProdOpt"
+                      />
+                    </div>
+                  </div>
 
-          <b-field grouped>
-            <b-field label="Product Options">
-              <b-select v-model="chosenProd" placeholder="Product Option ">
-                <option
-                  v-for="prod in products.productOptions"
-                  :key="prod.Id"
-                  >{{ prod.Id }}</option
-                >
-                <!--                                After Choosing an option , populate the rest -->
-              </b-select>
-            </b-field>
+                  <div class="field">
+                    <label class="label">Weight</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        :placeholder="'Current :' + prod.weight+'g'"
+                        v-model="OptWeight"
+                      />
+                    </div>
+                  </div>
 
-            <div class="box">
-              <h1>Edit Product Options</h1>
+                  <div class="field">
+                    <label class="label">Quantity</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        :placeholder="'Current :' + prod.quantity"
+                        v-model="OptQuantity"
+                      />
+                    </div>
+                  </div>
 
-              <div class="field">
-                <label class="label">Price</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].price
-                    "
-                    v-model="ProdOpt"
-                  />
-                </div>
-              </div>
 
-              <div class="field">
-                <label class="label">Weight</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].weight
-                    "
-                    v-model="OptWeight"
-                  />
-                </div>
-              </div>
+                  <div class="field">
+                    <label class="label">Available</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        :placeholder="'Current :' + prod.isAvailable"
+                        v-model="OptAvailable"
+                      />
+                    </div>
+                  </div>
 
-              <div class="field">
-                <label class="label">Quantity</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].quantity
-                    "
-                    v-model="OptQuantity"
-                  />
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">Created-At</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].created_at
-                    "
-                    v-model="OptCreated"
-                  />
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">Updated-At</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].updated_at
-                    "
-                    v-model="OptUpdated"
-                  />
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">Available</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].isAvailable
-                    "
-                    v-model="OptAvailable"
-                  />
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">Deleted</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    :placeholder="
-                      'Current :' +
-                        products.productOptions[this.chosenProd].isDeleted
-                    "
-                    v-model="OptDeleted"
-                  />
+                  <div class="field">
+                    <label class="label">Deleted</label>
+                    <div class="control">
+                      <input
+                        class="input"
+                        type="text"
+                        :placeholder="'Current :' + prod.isDeleted"
+                        v-model="OptDeleted"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </b-field>
 
+          <div class="columns">
+            <div class="column">
           <button
-            class="button is-3 is-info"
+            class="button is-info is-large"
             style="margin: 20px ; margin-right: 50px"
+            @click="this.EdtProd"
           >
             Edit Product
           </button>
+            </div>
+            <div class="column">
           <button
-            class="button is-3 is-info "
+            class="button  is-info is-large"
             style="margin: 20px ; margin-right: 50px"
           >
             Add Product
           </button>
+            </div>
+
+            <div class="column">
           <button
-            class="button is-3 is-info"
+            class="button is-danger is-large"
             style="margin: 20px ; margin-right: 50px"
           >
             Delete Product
           </button>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -341,7 +262,6 @@ export default {
   data() {
     return {
       userType: "GUEST",
-
       products: [], //For populating item options from front page
       ProdOpt: "",
       chosenProd: 1, //selecting which product option
@@ -369,7 +289,24 @@ export default {
     };
   },
   methods: {
-    ...mapGetters("user", ["getUserDetails", "getUserType"])
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    EdtProd: function()
+    {
+
+      axios.post("http://localhost:5000/api/Products/EditProduct",null, {
+        params: {
+          inId : this.ProdID,
+          inName : this.ProdName,
+          inDesc : this.ProdDesc,
+          inRegion  : this.ProdRegion,
+          inRoast : this.ProdRoast,
+          inAltitude_max : this.ProdMaxAlt,
+          inAltitude_min : this.ProdMinAlt,
+          inBean_type : this.ProdBeanType,
+          inImage_url : this.ProdImgUrl,
+        }
+      })
+    },
   },
   beforeCreate() {
     this.ProdID = this.$route.params.Id;

@@ -3,12 +3,11 @@
 
   <div>
 
-    <div class="has-text-right">
+    <div class="has-text-center">
       <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
       <b-dropdown
               style="background-color: #00adda; margin: 35px;"
               v-model="selectedFilters"
-              multiple
               aria-role="list"
               class="is-horizontal"
       >
