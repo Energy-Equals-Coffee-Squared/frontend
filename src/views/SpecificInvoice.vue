@@ -9,7 +9,7 @@
             <p>Discount Code:  <b>{{ Invoices.discount_code }}</b></p>
             <p>Discount Percent:  <b>{{ Invoices.discount_percentage }}%</b></p>
           </div>
-          <p>Express Shipping:  <b>{{ Invoices.isExpressShipping ? 'Yes' : 'No' }}</b></p>
+          <p>Express Shipping:  <b>{{ Invoices.isFreeShipping ? 'Yes' : 'No' }}</b></p>
           <p>Created At: <b>{{ Invoices.created_at }}</b></p>
           <p class="is-size-4">Tax:  <b>R{{ (Invoices.tax/100).toFixed(2) }}</b></p>
           <p class="is-size-4">Total:  <b>R{{ (Invoices.total/100).toFixed(2) }}</b></p>

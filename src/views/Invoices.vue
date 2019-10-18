@@ -18,8 +18,8 @@
             <b-table-column field="created_at" label="Completed">
               {{ props.row.created_at }}
             </b-table-column>
-            <b-table-column field="isExpressShipping" label="Express Shipping">
-              {{ props.row.isExpressShipping ? "Yes" : "No" }}
+            <b-table-column field="isFreeShipping" label="Express Shipping">
+              {{ props.row.isFreeShipping ? "Yes" : "No" }}
             </b-table-column>
             <b-table-column field="discount_code" label="Discount Code">
               {{ props.row.discount_code ? props.row.discount_code : "N/A" }}
