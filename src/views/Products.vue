@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="section">
-    <h1 class="has-text-centered title is-1">Products</h1>
+    <h1 class="has-text-centered title is-1 has-text-grey-lighter">Products</h1>
 
 
     </div>

@@ -6,12 +6,12 @@
     <div class="has-text-center">
       <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
       <b-dropdown
-              style="background-color: #00adda; margin: 35px;"
+              style="background-color: #0290A3; margin: 35px;"
               v-model="selectedFilters"
               aria-role="list"
               class="is-horizontal"
       >
-        <button class="button is-primary" type="button" slot="trigger">
+        <button class="button is-primary" type="button" slot="trigger" style="background-color:#0290A3 ">
           <span>Search Filters</span>
           <b-icon icon="menu-down"></b-icon>
         </button>
@@ -55,9 +55,7 @@
 
           <p class="title" style="margin: 20px">
             <strong
-              >Price R{{ product.min_price / 100 }} - R{{
-                product.max_price / 100
-              }}
+              >Price From R{{ product.min_price / 100 }}
             </strong>
           </p>
 <!--          <p class="subtitle">Description: {{ product.desc }}</p>-->

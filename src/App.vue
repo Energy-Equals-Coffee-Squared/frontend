@@ -2,7 +2,8 @@
   <!-- MasterPage -->
   <div
     id="app"
-    style="background-color: #ebddc4 ; height:auto; min-height: 100vh"
+    style="background-color: #272C2E
+     ; height:auto; min-height: 100vh"
   >
     <b-loading
       style="background-color: #ce9021"
@@ -15,7 +16,7 @@
       <section>
         <section>
           <!-- Navigation Bar -->
-          <b-navbar>
+          <b-navbar shadow="true">
             <template slot="brand">
               <b-navbar-item class="itemHeight" href="/">
                 <img src="../src/assets/images/Logo.png" rel="preload" alt="" />
@@ -23,25 +24,25 @@
             </template>
             <template slot="start">
               <router-link to="/">
-                <b-navbar-item style="height: 100%;">
+                <b-navbar-item tag="div" style="height: 100%;">
                   <h1 style="font-size: 21px">Home</h1>
                 </b-navbar-item>
               </router-link>
 
               <router-link to="/product">
-                <b-navbar-item style="height: 100%;">
+                <b-navbar-item tag="div" style="height: 100%;">
                   <h1 style="font-size: 21px">Products</h1>
                 </b-navbar-item>
               </router-link>
 
               <router-link to="/about">
-                <b-navbar-item style="height: 100%;">
+                <b-navbar-item tag="div" style="height: 100%;">
                   <h1 style="font-size: 21px">About Us</h1>
                 </b-navbar-item>
               </router-link>
 
               <router-link to="/coffeehelp">
-                <b-navbar-item style="height: 100%;">
+                <b-navbar-item tag="div" style="height: 100%;">
                   <h1 style="font-size: 21px">Help Finding The Perfect Bean</h1>
                 </b-navbar-item>
               </router-link>
@@ -155,7 +156,7 @@ export default {
 }
 /*Resize just the img element of Navbar */
 .navbar {
-  background-color: #222629;
+  background-color: #181a1b;
   min-height: 100px;
   position: relative;
   z-index: 30;
@@ -179,7 +180,7 @@ a.button.is-primary:hover {
   color: white;
 }
 .button.is-secondary {
-  background-color: #86c232;
+  background-color: transparent;
   border-color: transparent;
   color: white;
 }
@@ -188,7 +189,7 @@ a.button.is-primary:hover {
 }
 
 .box.is-primary {
-  background-color: #a07855;
+  background-color: darkslategrey;
 }
 
 .hero.is-link {
