@@ -45,7 +45,7 @@
           style="background-color: #222629;"
         >
           <p class="title">
-            <strong>{{ product.name }}</strong>
+            {{ product.name }}
           </p>
           <p class="subtitle">Origin: {{ product.region }}</p>
 
@@ -164,9 +164,23 @@ export default {
     }
   }
 };
+
 </script>
 
+
+
 <style scoped>
+  .title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .title:hover{
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+  }
+
 
 
 </style>
