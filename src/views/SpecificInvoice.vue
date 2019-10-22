@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="title has-text-centered">Invoice No. {{ Invoices.Id }}</div>
+    <div class="title has-text-centered has-text-grey-lighter">Invoice No. {{ Invoices.Id }}</div>
     <div class="columns is-centered">
       <div class="column is-one-third">
         <div class="box">

@@ -1,7 +1,7 @@
 <template>
   <div class="columns is-centered">
     <div class="column is-9">
-      <p class="title is-1 has-text-centered">Cart</p>
+      <p class="title is-1 has-text-centered has-text-grey-lighter">Cart</p>
       <div v-if="errorShow" class="message is-danger">
         <div class="message-body">
           {{ errorText }}
@@ -49,6 +49,7 @@
                   <button
                     class="button is-primary"
                     @click="removeFromCart(item.optionID)"
+                    style="background-color: #0290A3"
                   >
                     Remove
                   </button>
@@ -60,7 +61,7 @@
           <div class="columns is-centered">
             <div class="column is-7"></div>
 
-            <div class="column is-narrow">
+            <div class="column is-narrow has-text-grey-lighter">
               <span class="has-text-weight-semibold is-size-4"
                 >Discount Code:</span
               >
@@ -81,7 +82,7 @@
             </div>
 
             <div class="column is-narrow">
-              <button class="button is-primary" @click="addDiscountCode">
+              <button class="button is-primary" @click="addDiscountCode" style="background-color: #0290A3">
                 Add
               </button>
             </div>
@@ -95,12 +96,13 @@
               <button
                 @click="removeDiscount"
                 class="button is-danger is-fullwidth"
+
               >
                 remove
               </button>
             </div>
           </div>
-          <div class="has-text-centered has-text-weight-bold is-size-2">
+          <div class="has-text-centered has-text-weight-bold is-size-2 has-text-grey-lighter">
             Total R{{ ((cartTotal - disAmount) / 100).toFixed(2) }}
           </div>
           <br />
@@ -109,6 +111,7 @@
               class="button is-primary is-large"
               v-if="userType !== 'GUEST'"
               @click="payNow"
+              style="background-color: #ce9021"
             >
               Pay Now
             </button>
@@ -116,9 +119,9 @@
               <div class="columns is is-centered">
                 <div class="column is-narrow has-text-weight-semibold">
                   Before you pay, you need to
-                  <a href="login" class="button is-primary is-large">Login</a>
+                  <a href="login" class="button is-primary is-large" style="background-color: #ce9021">Login</a>
                   or
-                  <a href="register" class="button is-primary is-large"
+                  <a href="register" class="button is-primary is-large" style="background-color: #ce9021"
                     >Register</a
                   >
                 </div>
@@ -130,10 +133,10 @@
         <div v-if="cartItems.length <= 0">
           <div class="columns is-centered has-text-centered">
             <div class="column">
-              <p class="title">
+              <p class="title has-text-grey-lighter">
                 Nothing In Cart!
               </p>
-              <a class="button is-primary is-large" href="../product"
+              <a class="button is-primary is-large has-text-grey-lighter" href="../product" style="background-color: #0290A3"
                 >Get Some Coffee!</a
               >
             </div>

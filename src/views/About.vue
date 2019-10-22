@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container  has-text-grey-lighter">
       <h1>{{ message }}</h1>
       <br />
       <div class="row">
@@ -9,20 +9,20 @@
 
           <div class="column is-rounded">
             <img src="../assets/images/Avatars.png" />
-            <p class="tile" style="position:center">Grey Hat #1</p>
-            <p class="subtitle" style=" position: center">Thomas McAlpine</p>
+            <p class="tile has-text-grey-lighter" style="position:center">Grey Hat #1</p>
+            <p class="subtitle has-text-grey-lighter" style=" position: center">Thomas McAlpine</p>
           </div>
 
           <div class="column is-rounded">
             <img src="../assets/images/Avatars.png" />
-            <p class="tile" style="position:center">Grey Hat #2</p>
-            <p class="subtitle" style=" position: center">Anton Röscher</p>
+            <p class="tile has-text-grey-lighter" style="position:center">Grey Hat #2</p>
+            <p class="subtitle has-text-grey-lighter" style=" position: center">Anton Röscher</p>
           </div>
 
           <div class="column is-rounded">
             <img src="../assets/images/Avatars.png" />
-            <p class="tile" style="position:center">Grey Hat #3</p>
-            <p class="subtitle" style=" position: center">Andrew Walls</p>
+            <p class="tile has-text-grey-lighter" style="position:center">Grey Hat #3</p>
+            <p class="subtitle has-text-grey-lighter" style=" position: center">Andrew Walls</p>
           </div>
         </div>
       </div>

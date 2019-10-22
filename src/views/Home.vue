@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="col " align="center" style="margin-top: 25px">
-        <h1 class="is-size-1"> <strong>  Need Beans ?  </strong></h1>
+        <div class="col" align="center" style="margin-top: 25px">
+        <h1 class="is-size-1 has-text-grey-lighter">  Need Beans ?  </h1>
         </div>
  <div class="container" style="transform: scale(); margin-top: 50px">
    <carousel>
@@ -16,8 +16,8 @@
            </slide>
    </carousel>
  </div>
-        <div class="col " align="center">
-        <h1 class="is-size-1"><strong> We Got You !  </strong></h1>
+        <div class="col" align="center">
+        <h1 class="is-size-1 has-text-grey-lighter"> We Got You !  </h1>
         </div>
   </div>
 </template>

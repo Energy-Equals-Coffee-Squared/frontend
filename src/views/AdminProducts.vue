@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="title has-text-centered">
+    <div class="title has-text-centered has-text-grey-lighter">
       Products
     </div>
     <b-table :data="Products" :bordered="true" :striped="true" :hoverable="true">
@@ -38,6 +38,7 @@
           <router-link
             class="button is-primary"
             :to="'/admin/editproduct/' + props.row.Id"
+            style="background-color: #0290A3"
             >EDIT</router-link
           >
         </b-table-column>

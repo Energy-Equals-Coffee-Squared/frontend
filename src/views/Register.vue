@@ -2,7 +2,7 @@
   <section class="section">
     <div class="columns is-centered">
       <div class="column is-3 ">
-        <h1 class="title has-text-centered">Register</h1>
+        <h1 class="title has-text-centered has-text-grey-lighter">Register</h1>
 
         <div class="box">
           <div v-if="errorShow" class="message is-danger">
@@ -158,7 +158,7 @@
             </div>
             <!-- //REPEAT PASSWORD -->
 
-            <button class="button is-fullwidth is-primary">Register</button>
+            <button class="button is-fullwidth is-primary" style="background-color: #0290A3">Register</button>
           </form>
         </div>
       </div>

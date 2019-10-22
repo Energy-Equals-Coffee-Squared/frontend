@@ -55,6 +55,7 @@
                       <button
                         class="button is-primary"
                         @click="decreaseQuantity"
+                        style="background-color: #0290A3"
                       >
                         -
                       </button>
@@ -73,8 +74,10 @@
                       <button
                         class="button is-primary"
                         @click="increaseQuantity"
+                        style="background-color: #0290A3"
                       >
                         +
+
                       </button>
                     </p>
                   </div>
@@ -87,7 +90,7 @@
                 <button
                   align="center"
                   class="button is-primary is-large"
-                  style="margin: 10px"
+                  style="margin: 10px; background-color: #0290A3"
                   @click="addToCart"
                 >
                   <strong> Add To Cart ! </strong>

@@ -2,7 +2,7 @@
   <section class="section">
     <div class="columns is-centered">
       <div class="column is-3 ">
-        <h1 class="title has-text-centered">Login</h1>
+        <h1 class="title has-text-centered has-text-grey-lighter">Login</h1>
 
         <div class="box">
           <div v-if="errorShow" class="message is-danger">
@@ -58,7 +58,7 @@
             </div>
             <!-- //PASSWORD -->
 
-            <button class="button is-fullwidth is-primary">Login</button>
+            <button class="button is-fullwidth is-primary" style="background-color: #0290A3">Login</button>
           </form>
         </div>
       </div>

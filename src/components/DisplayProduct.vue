@@ -61,7 +61,7 @@
 <!--          <p class="subtitle">Description: {{ product.desc }}</p>-->
           <div class="has-text-centered">
             <a
-              class="button is-large is-primary is-fullwidth"
+              class="button is-large is-primary is-fullwidth" style="background-color: #0290A3"
               :href="'product/' + product.Id"
               ><b> More Info </b>
             </a>

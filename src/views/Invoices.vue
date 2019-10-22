@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="title has-text-centered">
+    <div class="title has-text-centered has-text-grey-lighter">
       Invoices
     </div>
     <div class="columns is-centered">
@@ -40,6 +40,7 @@
               <router-link
                 class="button is-primary"
                 :to="'invoices/' + props.row.Id"
+                style="background-color: #0290A3"
                 >View</router-link
               >
             </b-table-column>

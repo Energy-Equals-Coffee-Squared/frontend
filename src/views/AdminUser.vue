@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="title has-text-centered">
+    <div class="title has-text-centered has-text-grey-lighter">
       User
     </div>
     <b-table :data="Users" :bordered="true" :striped="true" :hoverable="true">
@@ -41,13 +41,13 @@
           <router-link
             class="button is-primary"
             :to="'/admin/UsrEdit/' + props.row.Id"
-            style="margin : 5px"
+            style="margin : 5px; background-color: #0290A3"
             >EDIT</router-link
           >
           <router-link
             class="button is-primary"
             :to="'/admin/UsrDelete/' + props.row.Id"
-            style="margin : 5px"
+            style="margin : 5px; background-color: #ff3860"
             >DELETE</router-link
           >
         </b-table-column>

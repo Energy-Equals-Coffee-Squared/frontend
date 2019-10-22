@@ -2,7 +2,7 @@
   <section class="section">
     <div class="columns is-centered">
       <div class="column is-7 ">
-        <h1 class="title has-text-centered">Edit User</h1>
+        <h1 class="title has-text-centered has-text-grey-lighter">Edit User</h1>
 
         <div class="box">
           <div v-if="errorShow" class="message is-danger">
@@ -107,7 +107,7 @@
           </div>
           <!--TODO Check Deleted one as well-->
           <div class="field">
-            <label class="label">User isDeleted</label>
+            <label class="label">User is Deleted</label>
             <div class="control">
               <input
                 class="input"
@@ -118,7 +118,7 @@
             </div>
           </div>
 
-          <button @click="updateUsers" class="button is-primary" style="margin: 25px">
+          <button @click="updateUsers" class="button is-primary" style="margin: 25px; background-color: #0290A3">
             Update User
           </button>
         </div>
