@@ -140,7 +140,7 @@ export default {
       axios
         .get("http://localhost:5000/api/Products", {
           params: {
-            order: "name_asc"
+            order: "price_asc"
           }
         })
         .then(response => {
