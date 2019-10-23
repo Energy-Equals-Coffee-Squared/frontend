@@ -2,7 +2,7 @@
   <section class="section">
     <div class="columns is-centered">
       <div class="column is-7 ">
-        <h1 class="title has-text-centered">Edit Product</h1>
+        <h1 class="title has-text-centered has-text-grey-lighter">Edit Product</h1>
 
         <div class="box">
           <!-- USERNAME -->
@@ -26,8 +26,7 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.name"
-                v-model="ProdName"
+                v-model="this.ProdName"
               />
             </div>
           </div>
@@ -39,8 +38,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.desc"
-                v-model="ProdDesc"
+                v-model="this.ProdDesc"
+
               />
             </div>
           </div>
@@ -59,8 +58,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.region"
-                v-model="ProdRegion"
+                v-model="this.ProdRegion"
+
               />
             </div>
           </div>
@@ -75,8 +74,8 @@
                   <input
                     class="input"
                     type="text"
-                    :placeholder="products.altitude_max"
-                    v-model="ProdMaxAlt"
+                    v-model="this.ProdMaxAlt"
+
                   />
                 </p>
               </div>
@@ -88,8 +87,8 @@
                   <input
                     class="input"
                     type="email"
-                    :placeholder="products.altitude_min"
-                    v-model="ProdMinAlt"
+                    v-model="this.ProdMinAlt"
+
                   />
                 </p>
               </div>
@@ -103,8 +102,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.roast"
-                v-model="ProdRoast"
+                v-model="this.ProdRoast"
+
               />
             </div>
           </div>
@@ -115,8 +114,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.bean_type"
-                v-model="ProdBeanType"
+                v-model="this.ProdBeanType"
+
               />
             </div>
           </div>
@@ -127,15 +126,14 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="products.image_url"
-                v-model="ProdImgUrl"
+                v-model="this.ProdImgUrl"
               />
             </div>
           </div>
 
 <!--          <b-field grouped>-->
 <!--            <b-field label="Product Options">-->
-<!--              <b-select v-model="chosenProd" placeholder="Product Option ">-->
+<!--              <b-select ="chosenProd" v-model="Product Option ">-->
 <!--                <option-->
 <!--                  v-for="prod in products.productOptions"-->
 <!--                  :key="prod.Id"-->
@@ -158,8 +156,8 @@
                       <input
                         class="input"
                         type="text"
-                        :placeholder="'Current : R' + (prod.price/100).toFixed(2)"
-                        v-model="ProdOpt"
+                        v-model="(prod.price/100).toFixed(2)"
+
                       />
                     </div>
                   </div>
@@ -170,8 +168,8 @@
                       <input
                         class="input"
                         type="text"
-                        :placeholder="'Current :' + prod.weight+'g'"
-                        v-model="OptWeight"
+                        v-model="prod.weight+'g'"
+
                       />
                     </div>
                   </div>
@@ -182,8 +180,8 @@
                       <input
                         class="input"
                         type="text"
-                        :placeholder="'Current :' + prod.quantity"
-                        v-model="OptQuantity"
+                        v-model="prod.quantity"
+
                       />
                     </div>
                   </div>
@@ -195,8 +193,8 @@
                       <input
                         class="input"
                         type="text"
-                        :placeholder="'Current :' + prod.isAvailable"
-                        v-model="OptAvailable"
+                        v-model="prod.isAvailable"
+
                       />
                     </div>
                   </div>
@@ -207,14 +205,14 @@
                       <input
                         class="input"
                         type="text"
-                        :placeholder="'Current :' + prod.isDeleted"
-                        v-model="OptDeleted"
+                        v-model="prod.isDeleted"
+
                       />
                     </div>
                   </div>
                   <div class="columns">
                     <div class="column is-narrow">
-                    <button class="button is-info">Edit</button>
+                    <button class="button is-info" >Edit</button>
                     </div>
 
                     <div class="column has-text-centered">
@@ -385,7 +383,25 @@ export default {
             this.products = response.data;
             // eslint-disable-next-line no-console
             console.log(this.products);
+            // eslint-disable-next-line no-console
             console.log(this.products.productOptions);
+            this.ID = this.products.Id;
+                    this.ProdName = this.products.name;
+                    this.ProdDesc = this.products.desc;
+                    this.ProdMaxP = this.products.max_price ;
+                    this.ProdMinP =  this.products.min_price;
+                    this.ProdMaxAlt = this.products.altitude_max;
+                    this.ProdMinAlt =  this.products.altitude_min;
+                    this.ProdRegion = this.products.region;
+                    this.ProdRoast = this.products.roast;
+                    this.ProdBeanType =  this.products.bean_type;
+                    this.ProdImgUrl = this.products.image_url;
+                    this.ProdCreated = this.products.created_at;
+                    this.ProdUpdated = this.products.updated_at;
+            // for(let i = 0 ; i < this.products.length ; i++)
+            // {
+            //
+            //         }
           })
           .catch(error => {});
       } catch (e) {
