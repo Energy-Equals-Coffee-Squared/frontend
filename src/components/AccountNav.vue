@@ -70,8 +70,12 @@ export default {
   methods: {
     ...mapActions("user", ["logoutUser"]),
     ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    ...mapActions("cart", ["reset"]),
+    ...mapActions("product", ["reset"]),
     logout() {
       this.$store.dispatch("user/logoutUser");
+      this.$store.dispatch("cart/reset");
+      this.$store.dispatch("product/reset");
       location.reload();
     }
   },
@@ -104,7 +108,7 @@ export default {
 }
 
 a.button.is-primary:hover {
-  background-color: #86c232;
+  background-color: #ce9021;
 }
 
 .button.is-primary {

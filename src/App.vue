@@ -171,7 +171,7 @@ export default {
 }
 
 a.button.is-primary:hover {
-  background-color: #86c232;
+  background-color: #ce9021;
 }
 
 .button.is-primary {

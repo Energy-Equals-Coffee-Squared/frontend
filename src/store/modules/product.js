@@ -39,6 +39,20 @@ export default {
       state.bean_type = payload.bean_type;
       state.image_url = payload.image_url;
       state.productOptions = payload.productOptions;
+    },
+    reset: state => {
+      state.Id = -1;
+      state.name = "";
+      state.desc = "";
+      state.max_price = -1;
+      state.min_price = -1;
+      state.region = "";
+      state.roast = "";
+      state.altitude_max = -1;
+      state.altitude_min = -1;
+      state.bean_type = "";
+      state.image_url = "";
+      state.productOptions = [];
     }
   },
 
@@ -56,6 +70,9 @@ export default {
         // eslint-disable-next-line no-console
         console.log(e);
       }
+    },
+    reset: ({ commit }) => {
+      commit("reset");
     }
   }
 };

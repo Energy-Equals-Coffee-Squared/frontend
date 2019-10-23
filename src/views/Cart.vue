@@ -8,137 +8,181 @@
         </div>
       </div>
       <div class="section">
-        <div v-if="cartItems.length > 0">
-          <div
-            class="columns is-centered"
-            style="margin-bottom: 20px;"
-            v-for="(item, index) in cartItems"
-          >
-            <div class="column box is-9">
-              <div class="columns">
-                <div class="column is-1">
-                  <div class="control">
-                    <input
-                      class="input is-hovered"
-                      type="number"
-                      min="1"
-                      v-model="item.quantity"
-                      @input="
-                        updateQuantity(item.optionID, parseInt(item.quantity))
-                      "
-                      @change="verifyQuantity(index)"
-                    />
+        <div class="columns is-centered">
+          <div class="column is-two-thirds">
+            <div v-if="cartItems.length > 0">
+              <div
+                class="columns box is-centered is-paddingless"
+                style="margin-bottom: 20px;"
+                v-for="(item, index) in cartItems"
+              >
+                <div class="column">
+                  <div class="columns">
+                    <div class="column is-1">
+                      <div class="control">
+                        <input
+                          class="input is-hovered"
+                          type="number"
+                          min="1"
+                          v-model="item.quantity"
+                          @input="
+                            updateQuantity(
+                              item.optionID,
+                              parseInt(item.quantity)
+                            )
+                          "
+                          @change="verifyQuantity(index)"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="column is-large has-text-centered">
+                      <span class="has-text-weight-semibold is-size-4"
+                        >{{ item.name }} {{ item.weight }}g</span
+                      >
+                    </div>
+
+                    <div class="column is-narrow">
+                      <span class="has-text-weight-semibold is-size-4"
+                        >R{{
+                          ((item.price * item.quantity) / 100).toFixed(2)
+                        }}</span
+                      >
+                    </div>
+
+                    <div class="column is-narrow">
+                      <button
+                        class="button is-primary"
+                        @click="removeFromCart(item.optionID)"
+                        style="background-color: #0290A3"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div class="column is-large has-text-centered">
+              <div class="columns is-centered">
+                <div class="column "></div>
+
+                <div class="column is-narrow has-text-grey-lighter">
                   <span class="has-text-weight-semibold is-size-4"
-                    >{{ item.name }} {{ item.weight }}g</span
+                    >Discount Code:</span
                   >
                 </div>
 
                 <div class="column is-narrow">
-                  <span class="has-text-weight-semibold is-size-4"
-                    >R{{
-                      ((item.price * item.quantity) / 100).toFixed(2)
-                    }}</span
-                  >
+                  <div class="field">
+                    <div class="control">
+                      <label>
+                        <input
+                          v-model="disCode"
+                          class="input is-info"
+                          type="text"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="column is-narrow">
                   <button
                     class="button is-primary"
-                    @click="removeFromCart(item.optionID)"
+                    @click="addDiscountCode"
                     style="background-color: #0290A3"
                   >
-                    Remove
+                    Add
+                  </button>
+                </div>
+                <!--            <div class="column is-2"></div>-->
+              </div>
+
+              <div v-if="discPerc > 0" class="columns is-centered">
+                <div class="column is-narrow box">
+                  <p class="">Code: {{ disCode }}</p>
+                  <p class="">Discount: {{ discPerc }}%</p>
+                  <p class="">Saved: R{{ (disAmount / 100).toFixed(2) }}</p>
+                  <button
+                    @click="removeDiscount"
+                    class="button is-danger is-fullwidth"
+                  >
+                    remove
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="columns is-centered">
-            <div class="column is-7"></div>
-
-            <div class="column is-narrow has-text-grey-lighter">
-              <span class="has-text-weight-semibold is-size-4"
-                >Discount Code:</span
+              <div class="columns is-centered">
+                <div class="column is-narrow">
+                  <p
+                    v-if="calcShippingAmount(cartTotal).toFixed(2) > 0"
+                    class="subtitle has-text-weight-semibold has-text-grey-lighter"
+                  >
+                    Spend R{{ calcShippingAmount(cartTotal).toFixed(2) }} more
+                    for FREE shipping
+                  </p>
+                  <p
+                    v-if="calcShippingAmount(cartTotal).toFixed(2) <= 0"
+                    class="subtitle has-text-weight-semibold has-text-grey-lighter"
+                  >
+                    You get FREE shipping
+                  </p>
+                </div>
+              </div>
+              <div
+                class="has-text-centered has-text-weight-bold is-size-2 has-text-grey-lighter"
               >
-            </div>
-
-            <div class="column is-narrow">
-              <div class="field">
-                <div class="control">
-                  <label>
-                    <input
-                      v-model="disCode"
-                      class="input is-info"
-                      type="text"
-                    />
-                  </label>
+                Total R{{ ((cartTotal - disAmount) / 100).toFixed(2) }}
+              </div>
+              <br />
+              <div class="has-text-centered has-text-weight-bold is-size-2">
+                <button
+                  class="button is-primary is-large"
+                  v-if="userType !== 'GUEST'"
+                  @click="payNow"
+                  style="background-color: #ce9021"
+                >
+                  Pay Now
+                </button>
+                <div v-else>
+                  <div class="columns is is-centered">
+                    <div
+                      class="column is-narrow has-text-grey-lighter has-text-weight-semibold"
+                    >
+                      Before you pay, you need to
+                      <a
+                        href="login"
+                        class="button is-primary is-large"
+                        style="background-color: #ce9021"
+                        >Login</a
+                      >
+                      or
+                      <a
+                        href="register"
+                        class="button is-primary is-large"
+                        style="background-color: #ce9021"
+                        >Register</a
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="column is-narrow">
-              <button class="button is-primary" @click="addDiscountCode" style="background-color: #0290A3">
-                Add
-              </button>
-            </div>
-            <div class="column is-2"></div>
-          </div>
-          <div v-if="discPerc > 0" class="columns is-centered">
-            <div class="column is-narrow box">
-              <p class="">Code: {{ disCode }}</p>
-              <p class="">Discount: {{ discPerc }}%</p>
-              <p class="">Saved: R{{ (disAmount / 100).toFixed(2) }}</p>
-              <button
-                @click="removeDiscount"
-                class="button is-danger is-fullwidth"
-
-              >
-                remove
-              </button>
-            </div>
-          </div>
-          <div class="has-text-centered has-text-weight-bold is-size-2 has-text-grey-lighter">
-            Total R{{ ((cartTotal - disAmount) / 100).toFixed(2) }}
-          </div>
-          <br />
-          <div class="has-text-centered has-text-weight-bold is-size-2">
-            <button
-              class="button is-primary is-large"
-              v-if="userType !== 'GUEST'"
-              @click="payNow"
-              style="background-color: #ce9021"
-            >
-              Pay Now
-            </button>
-            <div v-else>
-              <div class="columns is is-centered">
-                <div class="column is-narrow has-text-weight-semibold">
-                  Before you pay, you need to
-                  <a href="login" class="button is-primary is-large" style="background-color: #ce9021">Login</a>
-                  or
-                  <a href="register" class="button is-primary is-large" style="background-color: #ce9021"
-                    >Register</a
+            <div v-if="cartItems.length <= 0">
+              <div class="columns is-centered has-text-centered">
+                <div class="column">
+                  <p class="title has-text-grey-lighter">
+                    Nothing In Cart!
+                  </p>
+                  <a
+                    class="button is-primary is-large has-text-grey-lighter"
+                    href="../product"
+                    style="background-color: #0290A3"
+                    >Get Some Coffee!</a
                   >
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="cartItems.length <= 0">
-          <div class="columns is-centered has-text-centered">
-            <div class="column">
-              <p class="title has-text-grey-lighter">
-                Nothing In Cart!
-              </p>
-              <a class="button is-primary is-large has-text-grey-lighter" href="../product" style="background-color: #0290A3"
-                >Get Some Coffee!</a
-              >
             </div>
           </div>
         </div>
@@ -177,7 +221,7 @@ export default {
     ...mapGetters("cart", ["cartTotalAmount"]),
     ...mapGetters("cart", ["getDiscount"]),
     ...mapGetters("user", ["getUserDetails", "getUserType"]),
-    async removeDiscount(){
+    async removeDiscount() {
       await this.$store.dispatch("cart/removeDiscount");
       this.discPerc = 0;
       this.disCode = "";
@@ -204,7 +248,7 @@ export default {
       console.log("Items in cart");
       console.log(this.cartItems);
       this.cartTotal = this.$store.getters["cart/cartTotalAmount"];
-      this.disAmount = this.cartTotal * (this.discPerc / 100)
+      this.disAmount = this.cartTotal * (this.discPerc / 100);
       if (!this.cartTotal) {
         this.cartTotal = 0;
       }
@@ -220,9 +264,9 @@ export default {
       this.updateCart();
     },
     async payNow() {
-      if(this.discPerc>0){
+      if (this.discPerc > 0) {
         await this.$store.dispatch("cart/addToInvoice", this.disCode);
-      }else{
+      } else {
         await this.$store.dispatch("cart/addToInvoice", null);
       }
       this.updateCart();
@@ -238,6 +282,9 @@ export default {
         this.discPerc = tempDisc.percent;
         this.disAmount = this.cartTotal * (this.discPerc / 100);
       }
+    },
+    calcShippingAmount(total) {
+      return (50000 - total) / 100;
     }
   },
   async created() {

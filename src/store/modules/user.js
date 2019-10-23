@@ -4,7 +4,9 @@ import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   namespaced: true,
   methods: {
-    ...mapMutations("error", ["addErrorMessage", "showError"])
+    ...mapMutations("error", ["addErrorMessage", "showError"]),
+    ...mapMutations("product", ["reset"]),
+    ...mapMutations("cart", ["reset"])
   },
 
   state: {

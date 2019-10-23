@@ -58,7 +58,12 @@
             </div>
             <!-- //PASSWORD -->
 
-            <button class="button is-fullwidth is-primary" style="background-color: #0290A3">Login</button>
+            <button
+              class="button is-fullwidth is-primary"
+              style="background-color: #0290A3"
+            >
+              Login
+            </button>
           </form>
         </div>
       </div>
@@ -88,7 +93,7 @@ export default {
   beforeCreate() {
     //remove errors on page reload
     let userType = this.$store.getters["user/getUserType"];
-    if(userType !== "GUEST"){
+    if (userType !== "GUEST") {
       this.$router.go(-1);
     }
   },
@@ -100,6 +105,7 @@ export default {
     ...mapMutations("error", ["deleteError"]),
     ...mapActions("user", ["loginUser"]),
     ...mapGetters("user", ["getUserDetails"]),
+    ...mapActions("cart", ["addCartToDB", "getCartFromDB"]),
     showErrorUsername(text) {
       this.errorUname.show = true;
       this.errorUname.text = text;
@@ -116,7 +122,7 @@ export default {
       this.errorPword.show = false;
       this.errorPword.text = null;
     },
-    formSubmit: function(e) {
+    formSubmit: async function(e) {
       e.preventDefault();
       this.deleteError();
 
@@ -137,13 +143,20 @@ export default {
 
       if (uname && pword) {
         let vm = this;
-        this.$store.dispatch("user/loginUser", [uname, pword]).then(function() {
-          let tempUser = vm.$store.getters["user/getUserType"];
-          console.log(tempUser);
-          if (tempUser !== "GUEST") {
-            vm.$router.go(-1);
-          }
-        });
+        let tempUserType = "GUEST";
+        this.$store
+          .dispatch("user/loginUser", [uname, pword])
+          .then(async function() {
+            let tempUser = vm.$store.getters["user/getUserType"];
+            tempUserType = tempUser;
+            console.log(tempUser);
+            if (tempUser !== "GUEST") {
+              await vm.$store.dispatch("cart/addCartToDB");
+              await vm.$store.dispatch("cart/getCartFromDB");
+
+              vm.$router.go(-1);
+            }
+          });
       }
     }
   }

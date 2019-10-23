@@ -9,10 +9,10 @@
             <p>Discount Code:  <b>{{ Invoices.discount_code }}</b></p>
             <p>Discount Percent:  <b>{{ Invoices.discount_percentage }}%</b></p>
           </div>
-          <p>Express Shipping:  <b>{{ Invoices.isFreeShipping ? 'Yes' : 'No' }}</b></p>
+          <p>Shipping Cost:  <b>R{{ (Invoices.shipping_fee/100).toFixed(2) }}</b></p>
           <p>Created At: <b>{{ Invoices.created_at }}</b></p>
           <p class="is-size-4">Tax:  <b>R{{ (Invoices.tax/100).toFixed(2) }}</b></p>
-          <p class="is-size-4">Total:  <b>R{{ (Invoices.total/100).toFixed(2) }}</b></p>
+          <p class="is-size-4">Total:  <b>R{{ (Invoices.total_paid/100).toFixed(2) }}</b></p>
         </div>
       </div>
     </div>
@@ -26,10 +26,10 @@
           :hoverable="true"
         >
           <template slot-scope="props">
-            <b-table-column field="prod_name" label="prod_name">
+            <b-table-column field="prod_name" label="Name">
               {{ props.row.prod_name }}
             </b-table-column>
-            <b-table-column field="quantity" label="quantity">
+            <b-table-column field="quantity" label="Quantity">
               {{ props.row.quantity }}
             </b-table-column>
             <b-table-column field="opt_price" label="Unit Price">

@@ -225,6 +225,7 @@ export default {
     ...mapMutations("error", ["deleteError"]),
     ...mapActions("user", ["registerUser"]),
     ...mapGetters("user", ["getUserDetails"]),
+    ...mapActions("cart", ["addCartToDB", "getCartFromDB"]),
     checkUsername() {
       if (!this.username) {
         this.errorUsername.show = true;
@@ -355,6 +356,8 @@ export default {
             console.log(tempUser);
             if (tempUser !== "GUEST") {
               console.log("redirect to home");
+              vm.$store.dispatch("cart/addCartToDB");
+              vm.$store.dispatch("cart/getCartFromDB");
               vm.$router.go(-1);
             }
           });

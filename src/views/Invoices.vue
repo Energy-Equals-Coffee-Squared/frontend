@@ -18,8 +18,8 @@
             <b-table-column field="created_at" label="Completed">
               {{ props.row.created_at }}
             </b-table-column>
-            <b-table-column field="isFreeShipping" label="Express Shipping">
-              {{ props.row.isFreeShipping ? "Yes" : "No" }}
+            <b-table-column field="isFreeShipping" label="Shipping Cost">
+              R{{ (props.row.shipping_fee/100).toFixed(2)}}
             </b-table-column>
             <b-table-column field="discount_code" label="Discount Code">
               {{ props.row.discount_code ? props.row.discount_code : "N/A" }}
@@ -34,7 +34,7 @@
               R{{ (props.row.tax / 100).toFixed(2) }}
             </b-table-column>
             <b-table-column field="total" label="Total Paid">
-              R{{(props.row.total / 100).toFixed(2)}}
+              R{{(props.row.total_paid / 100).toFixed(2)}}
             </b-table-column>
             <b-table-column field="actions" label="actions">
               <router-link
