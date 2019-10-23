@@ -18,6 +18,7 @@ import UsrEdit from "./views/UsrEdit";
 import UsrDelete from "./views/UsrDelete";
 import AdminUser from "./views/AdminUser";
 import Reports from "./views/Reports";
+import Report from "./views/Report";
 
 Vue.use(Router);
 
@@ -103,8 +104,13 @@ export default new Router({
     },
     {
       path: "/admin/Report",
-      component: Reports,
+      component: Report,
       name: "Reports"
-    }
+    },
+    // {
+    //   path: "/Report",
+    //   component: Report,
+    //   name: "Report"
+    // }
   ]
 });

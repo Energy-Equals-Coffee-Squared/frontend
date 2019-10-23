@@ -11,6 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 Vue.component("vue-fontawesome", FontAwesomeIcon);
 
 
+
+import VueGoogleCharts from 'vue-google-charts'
+
+Vue.use(VueGoogleCharts)
+
 Vue.use(Buefy, {
   defaultIconComponent: "vue-fontawesome",
   defaultIconPack: "fas"
