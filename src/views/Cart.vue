@@ -115,14 +115,14 @@
               <div class="columns is-centered">
                 <div class="column is-narrow">
                   <p
-                    v-if="calcShippingAmount(cartTotal).toFixed(2) > 0"
+                    v-if="calcShippingAmount(cartTotal - disAmount).toFixed(2) > 0"
                     class="subtitle has-text-weight-semibold has-text-grey-lighter"
                   >
-                    Spend R{{ calcShippingAmount(cartTotal).toFixed(2) }} more
+                    Spend R{{ calcShippingAmount(cartTotal - disAmount).toFixed(2) }} more
                     for FREE shipping
                   </p>
                   <p
-                    v-if="calcShippingAmount(cartTotal).toFixed(2) <= 0"
+                    v-if="calcShippingAmount(cartTotal - disAmount).toFixed(2) <= 0"
                     class="subtitle has-text-weight-semibold has-text-grey-lighter"
                   >
                     You get FREE shipping
