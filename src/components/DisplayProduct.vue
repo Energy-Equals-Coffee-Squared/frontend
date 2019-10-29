@@ -4,6 +4,20 @@
   <div>
     <div class="has-text-center">
       <!--    <p class="content"><b>selected</b>: {{ selectedFilters }}</p>-->
+      <b-field style="margin: 0 25px;" >
+        <b-input placeholder="Search..."
+                 expanded
+                 v-model="searchKeywords"
+                 type="search"
+                 icon="magnify">
+        </b-input>
+        <p class="control">
+          <button @click="search"
+                  style="background-color:#0290A3; border: none;"
+                  class="button is-primary" >Search</button>
+        </p>
+      </b-field>
+
       <b-dropdown
         style="background-color: #0290A3; margin: 35px;"
         v-model="selectedFilters"
@@ -16,7 +30,7 @@
           slot="trigger"
           style="background-color:#0290A3 "
         >
-          <span>Search Filters</span>
+          <span>Sort</span>
           <b-icon icon="menu-down"></b-icon>
         </button>
 
@@ -54,16 +68,16 @@
               </p>
               <p class="subtitle">Origin: {{ product.region }}</p>
 
-              <figure class="image is-128x128" style="margin: 55px">
+              <figure class="image" style="margin: 25px">
                 <img
-                  src="../assets/images/coffee1.png"
-                  width="75"
-                  height="75"
+                  alt="coffee image"
+                  style="height: 200px; width: auto;"
+                  :src="getImgUrl(product.image_url)"
                 />
               </figure>
 
               <p class="title" style="margin: 20px">
-                <strong>Price From R{{ product.min_price / 100 }} </strong>
+                <strong>From R{{ (product.min_price / 100).toFixed(2) }} </strong>
               </p>
               <!--          <p class="subtitle">Description: {{ product.desc }}</p>-->
               <div class="has-text-centered">
@@ -92,16 +106,22 @@ export default {
   data() {
     return {
       Products: [],
-      selectedFilters: []
+      selectedFilters: [],
+      searchKeywords: "",
+      orderType: "default"
     };
   },
 
   methods: {
-    SortAsc: function() {
+    getImgUrl(tempUrl) {
+      return require('../assets/images/'+tempUrl)
+    },
+    getProds: function(ord, srch){
       axios
         .get("http://localhost:5000/api/Products", {
           params: {
-            order: "name_asc"
+            order: ord,
+            search: srch
           }
         })
         .then(response => {
@@ -109,45 +129,25 @@ export default {
           // eslint-disable-next-line no-console
           console.log(response);
         });
+    },
+    search: function(){
+      this.getProds(this.orderType, this.searchKeywords);
+    },
+    SortAsc: function() {
+      this.orderType = "name_asc";
+      this.getProds(this.orderType, this.searchKeywords);
     },
     SortDesc: function() {
-      axios
-        .get("http://localhost:5000/api/Products", {
-          params: {
-            order: "name_desc"
-          }
-        })
-        .then(response => {
-          this.Products = response.data;
-          // eslint-disable-next-line no-console
-          console.log(response);
-        });
+      this.orderType = "name_desc";
+      this.getProds(this.orderType, this.searchKeywords);
     },
     PriceDesc: function() {
-      axios
-        .get("http://localhost:5000/api/Products", {
-          params: {
-            order: "price_desc"
-          }
-        })
-        .then(response => {
-          this.Products = response.data;
-          // eslint-disable-next-line no-console
-          console.log(response);
-        });
+      this.orderType = "price_desc";
+      this.getProds(this.orderType, this.searchKeywords);
     },
     PriceAsc: function() {
-      axios
-        .get("http://localhost:5000/api/Products", {
-          params: {
-            order: "price_asc"
-          }
-        })
-        .then(response => {
-          this.Products = response.data;
-          // eslint-disable-next-line no-console
-          console.log(response);
-        });
+      this.orderType = "price_asc";
+      this.getProds(this.orderType, this.searchKeywords)
     }
   },
   async created() {
@@ -167,6 +167,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped>

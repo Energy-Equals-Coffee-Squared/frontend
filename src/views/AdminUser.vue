@@ -1,8 +1,26 @@
 <template>
+
   <div class="section">
     <div class="title has-text-centered has-text-grey-lighter">
       User
+
     </div>
+    <div class="section">
+      <b-field style="margin: 0 25px;" >
+        <b-input placeholder="Search..."
+                 expanded
+                 v-model="searchKeywords"
+                 type="search"
+                 icon="magnify">
+        </b-input>
+        <p class="control">
+          <button @click="search(searchKeywords)"
+                  style="background-color:#0290A3; border: none;"
+                  class="button is-primary" >Search</button>
+        </p>
+      </b-field>
+    </div>
+
     <b-table :data="Users" :bordered="true" :striped="true" :hoverable="true">
       <template slot-scope="props">
         <b-table-column field="Id" label="ID">
@@ -65,11 +83,26 @@ export default {
   data() {
     return {
       userType: "GUEST",
-      Users: []
+      Users: [],
+      searchKeywords: "",
     };
   },
   methods: {
-    ...mapGetters("user", ["getUserDetails", "getUserType"])
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    search: function(srch){
+      console.log(srch)
+      axios
+        .get("http://localhost:5000/api/Users", {
+          params: {
+            search: srch
+          }
+        })
+        .then(response => {
+          this.Users = response.data;
+          // eslint-disable-next-line no-console
+          console.log(response);
+        });
+    },
   },
   async created() {
     this.userType = this.$store.getters["user/getUserType"];

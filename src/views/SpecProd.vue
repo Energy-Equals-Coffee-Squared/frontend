@@ -13,12 +13,8 @@
               </p>
               <p class="subtitle"></p>
 
-              <figure class="image is-128x128" style="margin: 55px">
-                <img
-                  src="../assets/images/coffee1.png"
-                  width="75"
-                  height="75"
-                />
+              <figure class="image" style="margin: 55px">
+                <img alt="coffee image" style="height: 300px; width: auto;" :src="getImgUrl(product.image_url)" />
               </figure>
 
               <p class="subtitle">{{ product.desc }}</p>
@@ -150,6 +146,10 @@ export default {
     ...mapMutations("error", ["deleteError"]),
     ...mapActions("product", ["getProduct"]),
     ...mapActions("cart", ["addToCart"]),
+    getImgUrl(tempUrl) {
+      var images = require.context('../assets/', false, /\.png$/)
+      return require('../assets/images/'+tempUrl)
+    },
     changeDispPrice() {
       this.price = this.productOptions[this.optIndex].price;
       // eslint-disable-next-line no-console
