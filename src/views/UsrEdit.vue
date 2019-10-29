@@ -28,8 +28,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.username"
-                v-model="username"
+                :value="username"
+                v-on:input="username =  $event.target.value"
               />
             </div>
           </div>
@@ -40,8 +40,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.first_name"
-                v-model="f_name"
+                :value="f_name"
+                v-on:input="f_name =  $event.target.value"
               />
             </div>
           </div>
@@ -52,8 +52,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.last_name"
-                v-model="l_name"
+                :value="l_name"
+                v-on:input="l_name =  $event.target.value"
               />
             </div>
           </div>
@@ -64,8 +64,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.email"
-                v-model="em"
+                :value="em"
+                v-on:input="em =  $event.target.value"
               />
             </div>
           </div>
@@ -76,8 +76,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.contact_number"
-                v-model="contactn"
+                :value="contactn"
+                v-on:input="contactn =  $event.target.value"
               />
             </div>
           </div>
@@ -88,8 +88,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.isActive ? 'true' : 'false'"
-                v-model="Active"
+                :value="Active ? 1 : 0"
+                v-on:input="Active =  $event.target.value"
               />
             </div>
           </div>
@@ -100,8 +100,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.isAdmin ? 'true' : 'false'"
-                v-model="Admin"
+                :value="Admin ? 1 : 0"
+                v-on:input="Admin =  $event.target.value"
               />
             </div>
           </div>
@@ -112,8 +112,8 @@
               <input
                 class="input"
                 type="text"
-                :placeholder="this.user.isDelted ? 'true' : 'false'"
-                v-model="Deleted"
+                :value="Deleted ? 1 : 0"
+                v-on:input="Deleted =  $event.target.value"
               />
             </div>
           </div>
@@ -200,6 +200,15 @@ export default {
             this.user = response.data;
             // eslint-disable-next-line no-console
             console.log(response.data);
+            //Assign Values
+            this.username =this.user.username ,
+                    this.f_name = this.user.first_name  ,
+                    this.l_name = this.user.last_name ,
+                    this.em = this.user.email,
+                    this.contactn = this.user.contact_number ,
+                    this.Active = this.user.isActive ,
+                    this.Deleted = this.user.isDelted ,
+                    this.Admin= this.user.isAdmin
           })
           .catch(error => {});
       } catch (e) {

@@ -169,6 +169,7 @@ export default {
           .get("http://localhost:5000/api/Users/" + this.UsrID)
           .then(response => {
             this.user = response.data;
+
             // eslint-disable-next-line no-console
             console.log(this.user);
           })
