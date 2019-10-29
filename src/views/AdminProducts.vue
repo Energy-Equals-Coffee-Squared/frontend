@@ -3,19 +3,44 @@
     <div class="title has-text-centered has-text-grey-lighter">
       Products
     </div>
-
+    <div class="section">
+      <b-field style="margin: 0 25px;">
+        <b-input
+          placeholder="Search..."
+          expanded
+          v-model="searchKeywords"
+          type="search"
+          icon="magnify"
+        >
+        </b-input>
+        <p class="control">
+          <button
+            @click="search(searchKeywords)"
+            style="background-color:#0290A3; border: none;"
+            class="button is-primary"
+          >
+            Search
+          </button>
+        </p>
+      </b-field>
+    </div>
     <div class="columns" style="margin-left: 130px">
       <div class="column -align-center">
         <router-link
-                class="button is-primary"
-                :to="'/admin/AddProduct/'"
-                style="background-color: #0290A3"
-        >ADD PRODUCT</router-link
+          class="button is-primary"
+          :to="'/admin/AddProduct/'"
+          style="background-color: #0290A3"
+          >ADD PRODUCT</router-link
         >
       </div>
     </div>
 
-    <b-table :data="Products" :bordered="true" :striped="true" :hoverable="true">
+    <b-table
+      :data="Products"
+      :bordered="true"
+      :striped="true"
+      :hoverable="true"
+    >
       <template slot-scope="props">
         <b-table-column field="Id" label="ID">
           {{ props.row.Id }}
@@ -68,11 +93,30 @@ export default {
   data() {
     return {
       userType: "GUEST",
-      Products: []
+      Products: [],
+      searchKeywords: "",
+      orderType: "default"
     };
   },
   methods: {
-    ...mapGetters("user", ["getUserDetails", "getUserType"])
+    ...mapGetters("user", ["getUserDetails", "getUserType"]),
+    getProds: function(ord, srch) {
+      axios
+        .get("http://localhost:5000/api/Products", {
+          params: {
+            order: ord,
+            search: srch
+          }
+        })
+        .then(response => {
+          this.Products = response.data;
+          // eslint-disable-next-line no-console
+          console.log(response);
+        });
+    },
+    search: function() {
+      this.getProds(this.orderType, this.searchKeywords);
+    }
   },
   async created() {
     this.userType = this.$store.getters["user/getUserType"];
