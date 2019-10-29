@@ -3,6 +3,18 @@
     <div class="title has-text-centered has-text-grey-lighter">
       Products
     </div>
+
+    <div class="columns" style="margin-left: 130px">
+      <div class="column -align-center">
+        <router-link
+                class="button is-primary"
+                :to="'/admin/AddProduct/'"
+                style="background-color: #0290A3"
+        >ADD PRODUCT</router-link
+        >
+      </div>
+    </div>
+
     <b-table :data="Products" :bordered="true" :striped="true" :hoverable="true">
       <template slot-scope="props">
         <b-table-column field="Id" label="ID">

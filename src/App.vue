@@ -101,6 +101,7 @@ import About from "./views/About";
 import CoffeeHelp from "./views/CoffeeHelp";
 import EditProducts from "./views/EditProducts";
 import AccountNav from "./components/AccountNav";
+import AddProduct from "./views/AddProduct";
 
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 

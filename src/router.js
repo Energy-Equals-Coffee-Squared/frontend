@@ -19,6 +19,7 @@ import UsrDelete from "./views/UsrDelete";
 import AdminUser from "./views/AdminUser";
 import Reports from "./views/Reports";
 import Report from "./views/Report";
+import AddProduct from "./views/AddProduct";
 
 Vue.use(Router);
 
@@ -107,10 +108,10 @@ export default new Router({
       component: Report,
       name: "Reports"
     },
-    // {
-    //   path: "/Report",
-    //   component: Report,
-    //   name: "Report"
-    // }
+    {
+      path: "/admin/AddProduct",
+      component : AddProduct,
+      name: "AddProduct"
+    }
   ]
 });
