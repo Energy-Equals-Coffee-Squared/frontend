@@ -20,6 +20,7 @@ import AdminUser from "./views/AdminUser";
 import Reports from "./views/Reports";
 import Report from "./views/Report";
 import AddProduct from "./views/AddProduct";
+import CoffeePicker from "./views/CoffeePicker";
 
 Vue.use(Router);
 
@@ -112,6 +113,11 @@ export default new Router({
       path: "/admin/AddProduct",
       component : AddProduct,
       name: "AddProduct"
+    },
+    {
+      path: "/CoffeePicker",
+      component : CoffeePicker,
+      name: "CoffeePicker"
     }
   ]
 });

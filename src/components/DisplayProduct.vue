@@ -108,7 +108,10 @@ export default {
       Products: [],
       selectedFilters: [],
       searchKeywords: "",
-      orderType: "default"
+      orderType: "default",
+      inRoast: "",
+      inBean: "",
+      inRegion: ""
     };
   },
 
@@ -121,7 +124,10 @@ export default {
         .get("http://localhost:5000/api/Products", {
           params: {
             order: ord,
-            search: srch
+            search: srch,
+            roast: this.inRoast,
+            bean: this.inBean,
+            region: this.inRegion
           }
         })
         .then(response => {
@@ -152,8 +158,17 @@ export default {
   },
   async created() {
     try {
+      this.inRoast = this.$route.query.roast;
+      this.inBean = this.$route.query.bean;
+      this.inRegion = this.$route.query.region;
       await axios
-        .get("http://localhost:5000/api/Products")
+        .get("http://localhost:5000/api/Products", {
+          params: {
+            roast: this.inRoast,
+            bean: this.inBean,
+            region: this.inRegion
+          }
+        })
         .then(response => {
           this.Products = response.data;
           // eslint-disable-next-line no-console
